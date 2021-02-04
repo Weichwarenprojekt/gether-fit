@@ -10,4 +10,13 @@
     <string name="main_personal">Personal</string>
     <string name="main_group_add">Add Group</string>
 
+    <!-- The overview fragment -->
+    <string name="overview">Overview</string>
+
+    <!-- The to do fragment -->
+    <string name="todo">Todo</string>
+
+    <!-- The overview fragment -->
+    <string name="training">Training</string>
+
 </resources>
