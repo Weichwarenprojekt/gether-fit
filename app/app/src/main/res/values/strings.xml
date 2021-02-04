@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GetherFit</string>
+    <string name="app_name_alias">KLVAD</string>
+    <string name="placeholder">Placeholder</string>
+
+    <!-- Content descriptions -->
+    <string name="settings">Settings</string>
+
+    <!-- The main screen -->
+    <string name="main_personal">Personal</string>
+    <string name="main_group_add">Add Group</string>
+
+</resources>
