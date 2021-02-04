@@ -60,6 +60,7 @@
                 android:id="@+id/personal_space"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="openPersonal"
                 app:logo="@drawable/personal"
                 app:title="@string/main_personal"/>
 
@@ -71,14 +72,10 @@
                 android:layout_marginEnd="8dp" />
 
             <de.progresstinators.getherfit.NavButton
+                android:id="@+id/dummy_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:logo="@drawable/logo"
-                app:title="@string/app_name"/>
-
-            <de.progresstinators.getherfit.NavButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:onClick="openGroup"
                 app:logo="@drawable/logo"
                 app:title="@string/app_name"/>
 
@@ -92,9 +89,8 @@
 
     </HorizontalScrollView>
 
-    <fragment
-        android:id="@+id/personal_fragment"
-        android:name="de.progresstinators.getherfit.personal.PersonalFragment"
+    <FrameLayout
+        android:id="@+id/content"
         app:layout_constraintTop_toBottomOf="@id/navigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

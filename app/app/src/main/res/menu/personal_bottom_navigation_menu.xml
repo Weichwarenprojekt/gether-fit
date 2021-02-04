@@ -6,13 +6,13 @@
         android:icon="@drawable/ic_baseline_trending_up_24"
         android:title="@string/overview"/>
     <item
-        android:id="@+id/todo"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_format_list_numbered_24"
-        android:title="@string/todo"/>
-    <item
         android:id="@+id/training"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_work_24"
         android:title="@string/training"/>
+    <item
+        android:id="@+id/todo"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_format_list_numbered_24"
+        android:title="@string/todo"/>
 </menu>

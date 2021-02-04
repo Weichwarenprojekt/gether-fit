@@ -16,7 +16,10 @@
     <!-- The to do fragment -->
     <string name="todo">Todo</string>
 
-    <!-- The overview fragment -->
+    <!-- The training fragment -->
     <string name="training">Training</string>
+
+    <!-- The recipes fragment -->
+    <string name="recipes">Recipes</string>
 
 </resources>

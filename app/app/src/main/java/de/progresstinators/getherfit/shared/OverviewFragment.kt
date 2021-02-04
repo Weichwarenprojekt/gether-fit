@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.personal
+package de.progresstinators.getherfit.shared
 
 import android.os.Bundle
 import android.view.LayoutInflater
