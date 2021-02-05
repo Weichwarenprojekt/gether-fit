@@ -6,8 +6,8 @@
         <item name="colorPrimaryVariant">@color/grey_2</item>
         <item name="colorOnPrimary">@color/grey_3</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/green_1</item>
-        <item name="colorSecondaryVariant">@color/green_2</item>
+        <item name="colorSecondary">@color/green_2</item>
+        <item name="colorSecondaryVariant">@color/green_1</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
@@ -40,32 +40,32 @@
     </style>
 
     <style name="h2">
-        <item name="android:textSize"> 18sp </item>
+        <item name="android:textSize"> 20sp </item>
     </style>
 
     <style name="settings_title">
-        <item name="android:textSize"> 18sp </item>
+        <item name="android:textSize"> 20sp </item>
         <item name="android:textColor"> ?attr/colorSecondary </item>
     </style>
 
     <style name="h3">
-        <item name="android:textSize"> 16sp </item>
+        <item name="android:textSize"> 18sp </item>
     </style>
 
     <style name="description_text">
-        <item name="android:textSize"> 12sp </item>
+        <item name="android:textSize"> 14sp </item>
     </style>
 
     <style name="vertical_divider">
         <item name="android:layout_width"> 0.5dp </item>
         <item name="android:layout_height"> match_parent </item>
-        <item name="android:background"> @color/white </item>
+        <item name="android:background"> @color/grey_5 </item>
     </style>
 
     <style name="horizontal_divider">
         <item name="android:layout_width"> match_parent </item>
         <item name="android:layout_height"> 0.5dp </item>
-        <item name="android:background"> @color/white </item>
+        <item name="android:background"> @color/grey_5 </item>
     </style>
 
 </resources>

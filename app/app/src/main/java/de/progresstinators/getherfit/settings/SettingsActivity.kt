@@ -35,7 +35,7 @@ class SettingsActivity : BaseActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.settings_activity)
+        setContentView(R.layout.activity_settings)
         normalThemeButton = findViewById(R.id.button_normal_theme)
         klvadThemeButton = findViewById(R.id.button_klvad_theme)
         updateView()

@@ -50,15 +50,20 @@
                 style="@style/settings_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="@string/settings_appearance"
                 app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-            <de.progresstinators.getherfit.shared.DescriptionItem
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:description="@string/settings_bottom_bar_description"
-                app:text="@string/settings_bottom_bar">
+                android:layout_height="wrap_content">
+
+                <de.progresstinators.getherfit.shared.DescriptionItem
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="64dp"
+                    app:description="@string/settings_bottom_bar_description"
+                    app:text="@string/settings_bottom_bar" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_bottom_bar"
@@ -67,7 +72,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </de.progresstinators.getherfit.shared.DescriptionItem>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <de.progresstinators.getherfit.shared.DescriptionItem
                 android:layout_width="match_parent"
@@ -106,14 +111,15 @@
 
             <View
                 style="@style/horizontal_divider"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/theme_selection" />
 
             <TextView
                 android:id="@+id/personal"
                 style="@style/settings_title"
+                android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_personal"
@@ -121,8 +127,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_height="wrap_content">
 
                 <de.progresstinators.getherfit.shared.DescriptionItem
                     android:layout_width="match_parent"

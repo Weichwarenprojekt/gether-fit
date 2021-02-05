@@ -70,8 +70,8 @@
                 style="@style/vertical_divider"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="32dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
 
             <de.progresstinators.getherfit.shared.ImageButton
                 android:id="@+id/dummy_group"
@@ -82,6 +82,7 @@
                 app:title="@string/app_name"/>
 
             <de.progresstinators.getherfit.shared.ImageButton
+                android:layout_marginStart="-12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:logo="@drawable/add_group"
