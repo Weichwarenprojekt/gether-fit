@@ -9,6 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import de.progresstinators.getherfit.R
+import de.progresstinators.getherfit.settings.Settings
 import de.progresstinators.getherfit.shared.OverviewFragment
 import de.progresstinators.getherfit.shared.TrainingFragment
 
@@ -23,6 +24,11 @@ class PersonalFragment: Fragment() {
      * The bottom navigation bar
      */
     private lateinit var bottomNav: BottomNavigationView
+
+    /**
+     * The settings
+     */
+    private val settings = Settings.instance
 
     /***
      * Initialize the view
@@ -50,6 +56,10 @@ class PersonalFragment: Fragment() {
 
         // Initialize the bottom navigation bar
         bottomNav = view.findViewById(R.id.bottom_navigation)
+        bottomNav.visibility = when(settings.showBottomNav.value) {
+            true -> View.VISIBLE
+            else -> View.GONE
+        }
         bottomNav.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.training -> {

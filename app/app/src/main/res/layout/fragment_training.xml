@@ -6,8 +6,8 @@
 
     <TextView
         android:text="@string/training"
-        android:layout_margin="8dp"
-        android:textSize="30sp"
+        android:layout_margin="12dp"
+        style="@style/h2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="wrap_content"

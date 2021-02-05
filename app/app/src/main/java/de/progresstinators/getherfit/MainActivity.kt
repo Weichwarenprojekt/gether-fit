@@ -1,25 +1,28 @@
 package de.progresstinators.getherfit
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import de.progresstinators.getherfit.group.GroupFragment
 import de.progresstinators.getherfit.personal.PersonalFragment
+import de.progresstinators.getherfit.settings.SettingsActivity
+import de.progresstinators.getherfit.shared.BaseActivity
+import de.progresstinators.getherfit.shared.ImageButton
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     /**
      * The button for the personal view
      */
-    private lateinit var personalButton: NavButton
+    private lateinit var personalButton: ImageButton
 
     /**
      * The button for the dummy group
      */
-    private lateinit var groupButton: NavButton
+    private lateinit var groupButton: ImageButton
 
     /**
      * Initialize the activity
@@ -31,6 +34,16 @@ class MainActivity : AppCompatActivity() {
         personalButton.showHighlighting(true)
         groupButton = findViewById(R.id.dummy_group)
         showFragment(PersonalFragment())
+    }
+
+    /**
+     * Check if the settings changed something about the appearance
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SettingsActivity.ACTIVITY && resultCode == SettingsActivity.CHANGED) {
+            recreate()
+        }
     }
 
     /**
@@ -49,6 +62,15 @@ class MainActivity : AppCompatActivity() {
         personalButton.showHighlighting(false)
         groupButton.showHighlighting(true)
         showFragment(GroupFragment())
+    }
+
+    /**
+     * Switch to the settings
+     */
+    fun openSettings(v: View) {
+        val intent = Intent(this, SettingsActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        startActivityForResult(intent, SettingsActivity.ACTIVITY)
     }
 
     /**

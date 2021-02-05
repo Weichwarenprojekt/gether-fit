@@ -4,7 +4,7 @@
     <string name="placeholder">Placeholder</string>
 
     <!-- Content descriptions -->
-    <string name="settings">Settings</string>
+    <string name="description_settings">Settings</string>
 
     <!-- The main screen -->
     <string name="main_personal">Personal</string>
@@ -22,4 +22,16 @@
     <!-- The recipes fragment -->
     <string name="recipes">Recipes</string>
 
+    <!-- The settings screen -->
+    <string name="settings">Settings</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_bottom_bar">Bottom Bar Navigation</string>
+    <string name="settings_bottom_bar_description">Show the bottom bar navigation</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_description">Change the application\'s theme</string>
+    <string name="settings_theme_normal">Normal</string>
+    <string name="settings_theme_klvad">KLVAD</string>
+    <string name="settings_personal">Personal View</string>
+    <string name="settings_personal_overview">Personal Overview</string>
+    <string name="settings_personal_overview_description">Also reflect training data of all groups in the personal overview</string>
 </resources>

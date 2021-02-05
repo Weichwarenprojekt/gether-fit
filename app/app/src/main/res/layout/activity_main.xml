@@ -28,17 +28,18 @@
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="12dp"
         android:text="@string/app_name"
-        android:textSize="24sp"
+        style="@style/h1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_margin="8dp"
-        android:contentDescription="@string/settings"
+        android:layout_margin="12dp"
+        android:onClick="openSettings"
+        android:contentDescription="@string/description_settings"
         android:src="@drawable/ic_baseline_settings_24"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,8 +57,9 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <de.progresstinators.getherfit.NavButton
+            <de.progresstinators.getherfit.shared.ImageButton
                 android:id="@+id/personal_space"
+                android:layout_marginStart="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="openPersonal"
@@ -68,10 +70,10 @@
                 style="@style/vertical_divider"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="32dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp" />
 
-            <de.progresstinators.getherfit.NavButton
+            <de.progresstinators.getherfit.shared.ImageButton
                 android:id="@+id/dummy_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,7 +81,7 @@
                 app:logo="@drawable/logo"
                 app:title="@string/app_name"/>
 
-            <de.progresstinators.getherfit.NavButton
+            <de.progresstinators.getherfit.shared.ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:logo="@drawable/add_group"

@@ -4,13 +4,14 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GetherFit"
-        android:fullBackupContent="true">
-        <activity android:name="de.progresstinators.getherfit.MainActivity">
+        android:theme="@style/Theme.GetherFit">
+        <activity android:name=".settings.SettingsActivity"/>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
