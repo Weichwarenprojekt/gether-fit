@@ -8,16 +8,11 @@ import de.progresstinators.getherfit.settings.Settings
 abstract class BaseActivity : AppCompatActivity() {
 
     /**
-     * The settings
-     */
-    protected var settings = Settings.instance
-
-    /**
      * Initialize the activity
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        settings.load(this)
-        if (settings.theme.value) setTheme(R.style.Theme_KLVAD)
+        Settings.load(this)
+        if (Settings.theme.value) setTheme(R.style.Theme_KLVAD)
         else setTheme(R.style.Theme_GetherFit)
         super.onCreate(savedInstanceState)
     }

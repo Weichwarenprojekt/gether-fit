@@ -8,9 +8,12 @@ import com.google.gson.reflect.TypeToken
 /**
  * The settings preferences
  */
-const val PREFERENCES = "Settings"
+object Settings {
 
-class Settings private constructor() {
+    /**
+     * The key for the settings preferences
+     */
+    const val PREFERENCES = "Settings"
 
     /**
      * True if the settings were already loaded
@@ -31,20 +34,6 @@ class Settings private constructor() {
      * True if the personal overview should also reflect group data
      */
     var personalOverview = Value("personal_overview", true)
-
-    /**
-     * The singleton instance
-     */
-    private object HOLDER {
-        val INSTANCE = Settings()
-    }
-
-    /**
-     * @return The singleton instance
-     */
-    companion object {
-        val instance: Settings by lazy { HOLDER.INSTANCE }
-    }
 
     /**
      * Load the settings

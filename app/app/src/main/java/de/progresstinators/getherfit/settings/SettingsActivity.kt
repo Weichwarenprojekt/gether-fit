@@ -2,9 +2,11 @@ package de.progresstinators.getherfit.settings
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.widget.SwitchCompat
 import de.progresstinators.getherfit.R
 import de.progresstinators.getherfit.shared.BaseActivity
+import de.progresstinators.getherfit.shared.DescriptionItem
 import de.progresstinators.getherfit.shared.ImageButton
 
 
@@ -45,25 +47,38 @@ class SettingsActivity : BaseActivity() {
      * Update the activity view
      */
     private fun updateView() {
+        // Set the user data
+        val logo = findViewById<ImageView>(R.id.user_image)
+        if (User.image != null) logo.setImageBitmap(User.image)
+        val credential = findViewById<DescriptionItem>(R.id.credentials)
+        credential.setText(User.firstName + " " + User.lastName, User.email)
+
         // Set the highlighting for the active theme
-        normalThemeButton.showHighlighting(!settings.theme.value)
-        klvadThemeButton.showHighlighting(settings.theme.value)
+        normalThemeButton.showHighlighting(!Settings.theme.value)
+        klvadThemeButton.showHighlighting(Settings.theme.value)
 
         // Set the switch for the bottom bar nav
         val bottomBar = findViewById<SwitchCompat>(R.id.switch_bottom_bar)
-        bottomBar.isChecked = settings.showBottomNav.value
+        bottomBar.isChecked = Settings.showBottomNav.value
         bottomBar.setOnCheckedChangeListener { _, isChecked ->
-            settings.showBottomNav.update(isChecked, this)
+            Settings.showBottomNav.update(isChecked, this)
             result = CHANGED
         }
 
         // Set the switch for the bottom bar nav
         val personalOverview = findViewById<SwitchCompat>(R.id.switch_personal_overview)
-        personalOverview.isChecked = settings.personalOverview.value
+        personalOverview.isChecked = Settings.personalOverview.value
         personalOverview.setOnCheckedChangeListener { _, isChecked ->
-            settings.personalOverview.update(isChecked, this)
+            Settings.personalOverview.update(isChecked, this)
             result = CHANGED
         }
+    }
+
+    /**
+     * Log out the user
+     */
+    fun logOut(v: View) {
+        User.logOut(this)
     }
 
     /**
@@ -85,8 +100,8 @@ class SettingsActivity : BaseActivity() {
      */
     private fun setTheme(theme: Boolean) {
         // Check if theme needs to be changed
-        if (settings.theme.value == theme) return
-        settings.theme.update(theme, this)
+        if (Settings.theme.value == theme) return
+        Settings.theme.update(theme, this)
         if (theme) setTheme(R.style.Theme_KLVAD)
         else setTheme(R.style.Theme_GetherFit)
 

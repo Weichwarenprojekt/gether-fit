@@ -25,11 +25,6 @@ class GroupFragment : Fragment() {
      */
     private lateinit var bottomNav: BottomNavigationView
 
-    /**
-     * The settings
-     */
-    private val settings = Settings.instance
-
     /***
      * Initialize the view
      */
@@ -56,7 +51,7 @@ class GroupFragment : Fragment() {
 
         // Initialize the bottom navigation bar
         bottomNav = view.findViewById(R.id.bottom_navigation)
-        bottomNav.visibility = when(settings.showBottomNav.value) {
+        bottomNav.visibility = when(Settings.showBottomNav.value) {
             true -> View.VISIBLE
             else -> View.GONE
         }

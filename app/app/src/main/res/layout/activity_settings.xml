@@ -51,6 +51,68 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:text="@string/settings_account"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/user_image"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:src="@drawable/personal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/user_image"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.progresstinators.getherfit.shared.DescriptionItem
+                        android:id="@+id/credentials"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:description="@string/placeholder"
+                        app:text="@string/placeholder" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="128dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="8dp"
+                        android:onClick="logOut"
+                        android:background="@drawable/rounded_button"
+                        android:drawableStart="@drawable/ic_baseline_login_24"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:text="@string/settings_logout"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <View
+                style="@style/horizontal_divider"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/theme_selection" />
+
+            <TextView
+                style="@style/settings_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="@string/settings_appearance"
                 app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
@@ -119,13 +181,14 @@
             <TextView
                 android:id="@+id/personal"
                 style="@style/settings_title"
-                android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="@string/settings_personal"
                 app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginBottom="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

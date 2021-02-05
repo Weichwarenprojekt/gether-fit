@@ -24,19 +24,36 @@ class DescriptionItem @JvmOverloads constructor(
                 it,
                 R.styleable.DescriptionItem, 0, 0
             )
-            val titleText = resources.getText(typedArray.getResourceId(
-                R.styleable.DescriptionItem_text,
-                R.string.placeholder
-            ))
+            val titleText = resources.getText(
+                typedArray.getResourceId(
+                    R.styleable.DescriptionItem_text,
+                    R.string.placeholder
+                )
+            )
             val title = findViewById<TextView>(R.id.title)
             title.text = titleText
-            val descriptionText = resources.getText(typedArray.getResourceId(
-                R.styleable.DescriptionItem_description,
-                R.string.placeholder
-            ))
+            val descriptionText = resources.getText(
+                typedArray.getResourceId(
+                    R.styleable.DescriptionItem_description,
+                    R.string.placeholder
+                )
+            )
             val description = findViewById<TextView>(R.id.description)
             description.text = descriptionText
             typedArray.recycle()
         }
+    }
+
+    /**
+     * Set the text of the description field
+     *
+     * @param titleText The text to be shown in the title
+     * @param descriptionText The text to be shown in the description
+     */
+    fun setText(titleText: String, descriptionText: String) {
+        val title = findViewById<TextView>(R.id.title)
+        title.text = titleText
+        val description = findViewById<TextView>(R.id.description)
+        description.text = descriptionText
     }
 }

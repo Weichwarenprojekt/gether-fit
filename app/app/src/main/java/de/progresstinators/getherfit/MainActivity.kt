@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import de.progresstinators.getherfit.settings.SettingsActivity
 import de.progresstinators.getherfit.group.GroupFragment
 import de.progresstinators.getherfit.personal.PersonalFragment
-import de.progresstinators.getherfit.settings.SettingsActivity
 import de.progresstinators.getherfit.shared.BaseActivity
 import de.progresstinators.getherfit.shared.ImageButton
 
