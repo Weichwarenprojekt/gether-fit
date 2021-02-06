@@ -6,6 +6,18 @@
     <!-- Content descriptions -->
     <string name="description_settings">Settings</string>
     <string name="description_logout">Logout</string>
+    <string name="description_camera">Camera</string>
+    <string name="description_gallery">Gallery</string>
+    <string name="description_trashcan">Trashcan</string>
+    <string name="description_edit">Edit</string>
+
+    <!-- The image bottom sheet -->
+    <string name="bottom_image_title">Add Image</string>
+    <string name="bottom_image_camera">From Camera</string>
+    <string name="bottom_image_gallery">From Gallery</string>
+    <string name="bottom_image_delete">Delete Image</string>
+    <string name="bottom_image_delete_image">Delete Current Image</string>
+    <string name="bottom_image_gallery_error">Could not access the image!</string>
 
     <!-- The login screen -->
     <string name="login_description">Everything is better together!</string>

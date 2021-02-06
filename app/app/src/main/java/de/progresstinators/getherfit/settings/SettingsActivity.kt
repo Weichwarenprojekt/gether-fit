@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SwitchCompat
 import de.progresstinators.getherfit.R
 import de.progresstinators.getherfit.shared.BaseActivity
 import de.progresstinators.getherfit.shared.DescriptionItem
+import de.progresstinators.getherfit.shared.ImageBottomSheet
 import de.progresstinators.getherfit.shared.ImageButton
 
 
@@ -48,8 +49,7 @@ class SettingsActivity : BaseActivity() {
      */
     private fun updateView() {
         // Set the user data
-        val logo = findViewById<ImageView>(R.id.user_image)
-        if (User.image != null) logo.setImageBitmap(User.image)
+        updateImage()
         val credential = findViewById<DescriptionItem>(R.id.credentials)
         credential.setText(User.firstName + " " + User.lastName, User.email)
 
@@ -72,6 +72,28 @@ class SettingsActivity : BaseActivity() {
             Settings.personalOverview.update(isChecked, this)
             result = CHANGED
         }
+    }
+
+    /**
+     * Update the user's image
+     */
+    private fun updateImage() {
+        val logo = findViewById<ImageView>(R.id.user_image)
+        if (User.image != null) logo.setImageBitmap(User.image)
+        else logo.setImageResource(R.drawable.personal)
+    }
+
+    /**
+     * Modify the profile picture
+     */
+    fun modifyImage(v: View) {
+        v.isEnabled = false
+        ImageBottomSheet { result, image ->
+            if (result == ImageBottomSheet.ADD_IMAGE) User.image = image
+            else if (result == ImageBottomSheet.DELETE_IMAGE) User.image = null
+            if (result != ImageBottomSheet.EMPTY) updateImage()
+            v.isEnabled = true
+        }.show(supportFragmentManager, "modify_profile_picture")
     }
 
     /**

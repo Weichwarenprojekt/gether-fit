@@ -66,6 +66,16 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageButton
+                    android:contentDescription="@string/description_edit"
+                    app:layout_constraintTop_toTopOf="@id/user_image"
+                    app:layout_constraintLeft_toLeftOf="@id/user_image"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:onClick="modifyImage"
+                    android:src="@drawable/ic_baseline_edit_24"
+                    android:background="@drawable/rounded_button"/>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

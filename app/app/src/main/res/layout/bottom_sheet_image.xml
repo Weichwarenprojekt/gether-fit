@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorOnPrimary"
+    android:orientation="vertical"
+    android:padding="12dp"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="16dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        style="@style/settings_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bottom_image_title" />
+
+    <TextView
+        android:id="@+id/from_camera"
+        style="@style/h3"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/bottom_image_camera"
+        app:drawableStartCompat="@drawable/ic_baseline_photo_camera_24" />
+
+    <TextView
+        android:id="@+id/from_gallery"
+        style="@style/h3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/bottom_image_gallery"
+        app:drawableStartCompat="@drawable/ic_baseline_collections_24" />
+
+    <View
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        style="@style/horizontal_divider"/>
+
+    <TextView
+        style="@style/settings_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bottom_image_delete" />
+
+    <TextView
+        android:id="@+id/delete"
+        style="@style/h3"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/bottom_image_delete_image"
+        app:drawableStartCompat="@drawable/ic_baseline_delete_24" />
+
+</LinearLayout>
