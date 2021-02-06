@@ -57,9 +57,10 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/group_image"
+                    style="@style/ProfilePicture"
                     android:layout_width="256dp"
                     android:layout_height="256dp"
-                    android:src="@drawable/new_group"
+                    android:src="@drawable/group"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

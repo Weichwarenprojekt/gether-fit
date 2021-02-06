@@ -92,7 +92,7 @@ class EditGroupActivity : BaseActivity() {
     private fun updateImage() {
         val logo = findViewById<ImageView>(R.id.group_image)
         if (group.image != null) logo.setImageBitmap(group.image)
-        else logo.setImageResource(R.drawable.new_group)
+        else logo.setImageResource(R.drawable.group)
     }
 
     /**

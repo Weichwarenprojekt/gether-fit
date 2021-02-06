@@ -78,7 +78,7 @@ class SettingsActivity : BaseActivity() {
     private fun updateImage() {
         val logo = findViewById<ImageView>(R.id.user_image)
         if (User.image != null) logo.setImageBitmap(User.image)
-        else logo.setImageResource(R.drawable.personal)
+        else logo.setImageResource(R.drawable.person)
     }
 
     /**
