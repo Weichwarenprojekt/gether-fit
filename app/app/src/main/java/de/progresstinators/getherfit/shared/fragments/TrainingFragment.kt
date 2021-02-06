@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.shared
+package de.progresstinators.getherfit.shared.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

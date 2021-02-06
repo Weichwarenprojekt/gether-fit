@@ -10,8 +10,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import de.progresstinators.getherfit.R
 import de.progresstinators.getherfit.settings.Settings
-import de.progresstinators.getherfit.shared.OverviewFragment
-import de.progresstinators.getherfit.shared.TrainingFragment
+import de.progresstinators.getherfit.shared.fragments.OverviewFragment
+import de.progresstinators.getherfit.shared.fragments.TrainingFragment
 
 class PersonalFragment: Fragment() {
 
