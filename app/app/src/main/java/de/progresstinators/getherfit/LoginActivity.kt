@@ -75,7 +75,7 @@ class LoginActivity : BaseActivity() {
      * Show the main view
      */
     private fun showMain(account: GoogleSignInAccount) {
-        User.logIn(account, signInClient!!)
+        User.logIn(account)
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

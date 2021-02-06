@@ -6,9 +6,9 @@ import android.widget.ImageView
 import androidx.appcompat.widget.SwitchCompat
 import de.progresstinators.getherfit.R
 import de.progresstinators.getherfit.shared.BaseActivity
-import de.progresstinators.getherfit.shared.DescriptionItem
-import de.progresstinators.getherfit.shared.ImageBottomSheet
-import de.progresstinators.getherfit.shared.ImageButton
+import de.progresstinators.getherfit.shared.components.DescriptionItem
+import de.progresstinators.getherfit.shared.components.ImageBottomSheet
+import de.progresstinators.getherfit.shared.components.ImageButton
 
 
 class SettingsActivity : BaseActivity() {
@@ -17,10 +17,8 @@ class SettingsActivity : BaseActivity() {
      * The activity results
      */
     companion object {
-        const val EMPTY = 0
-        const val ACTIVITY = 1
-        const val CHANGED = 2
-        var result = EMPTY
+        const val CHANGED = 1
+        const val LOGGED_OUT = 2
     }
 
     /**
@@ -62,7 +60,7 @@ class SettingsActivity : BaseActivity() {
         bottomBar.isChecked = Settings.showBottomNav.value
         bottomBar.setOnCheckedChangeListener { _, isChecked ->
             Settings.showBottomNav.update(isChecked, this)
-            result = CHANGED
+            setResult(CHANGED)
         }
 
         // Set the switch for the bottom bar nav
@@ -70,7 +68,7 @@ class SettingsActivity : BaseActivity() {
         personalOverview.isChecked = Settings.personalOverview.value
         personalOverview.setOnCheckedChangeListener { _, isChecked ->
             Settings.personalOverview.update(isChecked, this)
-            result = CHANGED
+            setResult(CHANGED)
         }
     }
 
@@ -84,16 +82,18 @@ class SettingsActivity : BaseActivity() {
     }
 
     /**
-     * Modify the profile picture
+     * Modify the user image
      */
     fun modifyImage(v: View) {
         v.isEnabled = false
         ImageBottomSheet { result, image ->
-            if (result == ImageBottomSheet.ADD_IMAGE) User.image = image
-            else if (result == ImageBottomSheet.DELETE_IMAGE) User.image = null
+            if (result == ImageBottomSheet.ADD_IMAGE) User.image =
+                image
+            else if (result == ImageBottomSheet.DELETE_IMAGE) User.image =
+                null
             if (result != ImageBottomSheet.EMPTY) updateImage()
             v.isEnabled = true
-        }.show(supportFragmentManager, "modify_profile_picture")
+        }.show(supportFragmentManager, "modify_user_image")
     }
 
     /**
@@ -101,6 +101,8 @@ class SettingsActivity : BaseActivity() {
      */
     fun logOut(v: View) {
         User.logOut(this)
+        setResult(LOGGED_OUT)
+        finish()
     }
 
     /**
@@ -128,18 +130,8 @@ class SettingsActivity : BaseActivity() {
         else setTheme(R.style.Theme_GetherFit)
 
         // Set the result to signal an appearance change
-        result = CHANGED
-        recreate()
-    }
-
-    /**
-     * Set the result and close the activity
-     */
-    override fun onBackPressed() {
-        window.setWindowAnimations(0)
-        setResult(result)
-        finish()
-        result = EMPTY
+        setResult(CHANGED)
+        reload()
     }
 
     /**

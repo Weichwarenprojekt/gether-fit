@@ -5,14 +5,25 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import de.progresstinators.getherfit.settings.SettingsActivity
+import de.progresstinators.getherfit.data.Group
+import de.progresstinators.getherfit.group.EditGroupActivity
 import de.progresstinators.getherfit.group.GroupFragment
 import de.progresstinators.getherfit.personal.PersonalFragment
+import de.progresstinators.getherfit.settings.SettingsActivity
+import de.progresstinators.getherfit.settings.User
 import de.progresstinators.getherfit.shared.BaseActivity
-import de.progresstinators.getherfit.shared.ImageButton
+import de.progresstinators.getherfit.shared.components.ImageButton
 
 
 class MainActivity : BaseActivity() {
+
+    /**
+     * The possible activity request codes
+     */
+    companion object {
+        const val SETTINGS = 1
+        const val ADD_GROUP = 2
+    }
 
     /**
      * The button for the personal view
@@ -40,9 +51,17 @@ class MainActivity : BaseActivity() {
      * Check if the settings changed something about the appearance
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        println(resultCode)
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == SettingsActivity.ACTIVITY && resultCode == SettingsActivity.CHANGED) {
-            recreate()
+        if (requestCode == SETTINGS) {
+            if (resultCode == SettingsActivity.CHANGED) {
+                reload()
+            } else if (resultCode == SettingsActivity.LOGGED_OUT) {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+        } else if (requestCode == ADD_GROUP && resultCode == EditGroupActivity.GROUP_ADDED) {
+            println("New Group")
         }
     }
 
@@ -65,12 +84,22 @@ class MainActivity : BaseActivity() {
     }
 
     /**
+     * Add a group
+     */
+    fun addGroup(v: View) {
+        EditGroupActivity.prepare(true, Group(User.email))
+        val intent = Intent(this, EditGroupActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        startActivityForResult(intent, ADD_GROUP)
+    }
+
+    /**
      * Switch to the settings
      */
     fun openSettings(v: View) {
         val intent = Intent(this, SettingsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-        startActivityForResult(intent, SettingsActivity.ACTIVITY)
+        startActivityForResult(intent, SETTINGS)
     }
 
     /**

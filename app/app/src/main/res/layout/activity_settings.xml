@@ -11,7 +11,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/logo"
             style="@style/h1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,7 +85,7 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <de.progresstinators.getherfit.shared.DescriptionItem
+                    <de.progresstinators.getherfit.shared.components.DescriptionItem
                         android:id="@+id/credentials"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -94,7 +93,7 @@
                         app:text="@string/placeholder" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:layout_width="128dp"
+                        android:layout_width="144dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="8dp"
                         android:onClick="logOut"
@@ -103,7 +102,6 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
                         android:text="@string/settings_logout"
-                        android:textAlignment="textEnd"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -130,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <de.progresstinators.getherfit.shared.DescriptionItem
+                <de.progresstinators.getherfit.shared.components.DescriptionItem
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="64dp"
@@ -146,7 +144,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <de.progresstinators.getherfit.shared.DescriptionItem
+            <de.progresstinators.getherfit.shared.components.DescriptionItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -161,7 +159,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/personal">
 
-                <de.progresstinators.getherfit.shared.ImageButton
+                <de.progresstinators.getherfit.shared.components.ImageButton
                     android:id="@+id/button_normal_theme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -170,7 +168,7 @@
                     app:logo="@drawable/theme_normal"
                     app:title="@string/settings_theme_normal" />
 
-                <de.progresstinators.getherfit.shared.ImageButton
+                <de.progresstinators.getherfit.shared.components.ImageButton
                     android:id="@+id/button_klvad_theme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,7 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <de.progresstinators.getherfit.shared.DescriptionItem
+                <de.progresstinators.getherfit.shared.components.DescriptionItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="64dp"

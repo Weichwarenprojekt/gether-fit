@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.shared
+package de.progresstinators.getherfit.shared.components
 
 import android.app.Activity.RESULT_OK
 import android.content.DialogInterface
@@ -33,7 +33,8 @@ class ImageBottomSheet(var onResult: (result: Int, image: Bitmap?) -> Unit) : Bo
     /**
      * The result of the bottom sheet
      */
-    private var result = EMPTY
+    private var result =
+        EMPTY
 
     /**
      * The image output
@@ -50,14 +51,19 @@ class ImageBottomSheet(var onResult: (result: Int, image: Bitmap?) -> Unit) : Bo
         // Setup the click events
         view.findViewById<TextView>(R.id.from_camera).setOnClickListener {
             val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(takePicture, FROM_CAMERA)
+            startActivityForResult(takePicture,
+                FROM_CAMERA
+            )
         }
         view.findViewById<TextView>(R.id.from_gallery).setOnClickListener {
             val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(pickPhoto, FROM_GALLERY)
+            startActivityForResult(pickPhoto,
+                FROM_GALLERY
+            )
         }
         view.findViewById<TextView>(R.id.delete).setOnClickListener {
-            result = DELETE_IMAGE
+            result =
+                DELETE_IMAGE
             dismiss()
         }
 
@@ -72,7 +78,8 @@ class ImageBottomSheet(var onResult: (result: Int, image: Bitmap?) -> Unit) : Bo
         if (requestCode == FROM_CAMERA && resultCode == RESULT_OK && data != null) {
             // Get the image and set the result
             image = data.extras!!.get("data") as Bitmap
-            result = ADD_IMAGE
+            result =
+                ADD_IMAGE
             dismiss()
         } else if (requestCode == FROM_GALLERY && resultCode == RESULT_OK) {
             try {
@@ -80,13 +87,9 @@ class ImageBottomSheet(var onResult: (result: Int, image: Bitmap?) -> Unit) : Bo
                 val inputStream = context!!.contentResolver.openInputStream(data!!.data!!)
                 image = BitmapFactory.decodeStream(inputStream)
 
-                // Rotate the image
-                val matrix = Matrix()
-                matrix.postRotate(90.0f)
-                image = Bitmap.createBitmap(image!!, 0, 0, image!!.width, image!!.height, matrix, true)
-
                 // Set the result and hide the bottom sheet
-                result = ADD_IMAGE
+                result =
+                    ADD_IMAGE
                 dismiss()
             } catch (e: Exception) {
                 Toast.makeText(activity, R.string.bottom_image_gallery_error, Toast.LENGTH_LONG).show()

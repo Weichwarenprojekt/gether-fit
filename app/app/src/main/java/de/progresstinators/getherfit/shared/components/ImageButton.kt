@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.shared
+package de.progresstinators.getherfit.shared.components
 
 import android.content.Context
 import android.util.AttributeSet

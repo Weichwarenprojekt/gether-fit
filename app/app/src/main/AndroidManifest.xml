@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".group.EditGroupActivity" />
         <activity android:name=".settings.SettingsActivity" />
         <activity android:name=".MainActivity" />
     </application>

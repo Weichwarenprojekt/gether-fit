@@ -1,13 +1,13 @@
 package de.progresstinators.getherfit.settings
 
 import android.app.Activity
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import de.progresstinators.getherfit.LoginActivity
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import de.progresstinators.getherfit.R
 import java.io.InputStream
 import java.net.URL
@@ -39,18 +39,12 @@ object User {
     private lateinit var account: GoogleSignInAccount
 
     /**
-     * The sign in client
-     */
-    private lateinit var signInClient: GoogleSignInClient
-
-    /**
      * Log in with a given google user and extract information
      *
      * @param account The corresponding google account
      */
-    fun logIn(account: GoogleSignInAccount, signInClient: GoogleSignInClient) {
+    fun logIn(account: GoogleSignInAccount) {
         this.account = account
-        this.signInClient = signInClient
         firstName = account.givenName.toString()
         lastName = account.familyName.toString()
         email = account.email.toString()
@@ -68,10 +62,10 @@ object User {
      * Log out the current user
      */
     fun logOut(activity: Activity) {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
+        val signInClient: GoogleSignInClient = GoogleSignIn.getClient(activity, gso)
         signInClient.signOut().addOnCompleteListener(activity) {
             Toast.makeText(activity, R.string.login_logout, Toast.LENGTH_LONG).show()
         }
-        activity.startActivity(Intent(activity, LoginActivity::class.java))
-        activity.finish()
     }
 }

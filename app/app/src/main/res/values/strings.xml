@@ -28,6 +28,15 @@
     <string name="main_personal">Personal</string>
     <string name="main_group_add">Add Group</string>
 
+    <!-- The add group screen -->
+    <string name="edit_group">Add Group</string>
+    <string name="edit_group_modify">Modify Group</string>
+    <string name="edit_group_confirm">Confirm</string>
+    <string name="edit_group_delete">Delete</string>
+    <string name="edit_group_leave">Leave</string>
+    <string name="edit_group_name">Name</string>
+    <string name="edit_group_name_hint">Insert Group Name</string>
+
     <!-- The overview fragment -->
     <string name="overview">Overview</string>
 
