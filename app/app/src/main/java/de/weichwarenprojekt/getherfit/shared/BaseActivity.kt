@@ -1,10 +1,9 @@
-package de.progresstinators.getherfit.shared
+package de.weichwarenprojekt.getherfit.shared
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import de.progresstinators.getherfit.R
-import de.progresstinators.getherfit.settings.Settings
+import de.weichwarenprojekt.getherfit.R
+import de.weichwarenprojekt.getherfit.settings.Settings
 
 abstract class BaseActivity : AppCompatActivity() {
 

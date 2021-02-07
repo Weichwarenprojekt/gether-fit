@@ -1,15 +1,15 @@
-package de.progresstinators.getherfit.settings
+package de.weichwarenprojekt.getherfit.settings
 
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.widget.SwitchCompat
-import de.progresstinators.getherfit.R
-import de.progresstinators.getherfit.shared.BaseActivity
-import de.progresstinators.getherfit.shared.components.ConfirmDialog
-import de.progresstinators.getherfit.shared.components.DescriptionItem
-import de.progresstinators.getherfit.shared.components.ImageBottomSheet
-import de.progresstinators.getherfit.shared.components.ImageButton
+import de.weichwarenprojekt.getherfit.R
+import de.weichwarenprojekt.getherfit.shared.BaseActivity
+import de.weichwarenprojekt.getherfit.shared.components.ConfirmDialog
+import de.weichwarenprojekt.getherfit.shared.components.DescriptionItem
+import de.weichwarenprojekt.getherfit.shared.components.ImageBottomSheet
+import de.weichwarenprojekt.getherfit.shared.components.ImageButton
 
 
 class SettingsActivity : BaseActivity() {

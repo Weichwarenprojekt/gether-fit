@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.shared.components
+package de.weichwarenprojekt.getherfit.shared.components
 
 import android.app.Activity.RESULT_OK
 import android.content.DialogInterface
@@ -19,7 +19,7 @@ import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import de.progresstinators.getherfit.R
+import de.weichwarenprojekt.getherfit.R
 import java.io.File
 import java.io.IOException
 
@@ -93,7 +93,7 @@ class ImageBottomSheet(var onResult: (result: Int, image: Bitmap?) -> Unit) : Bo
                 photoFile?.also {
                     val photoURI: Uri = FileProvider.getUriForFile(
                         activity!!,
-                        "de.progresstinators.getherfit.fileprovider",
+                        "de.weichwarenprojekt.getherfit.fileprovider",
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)

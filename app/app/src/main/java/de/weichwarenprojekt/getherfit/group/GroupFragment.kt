@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.personal
+package de.weichwarenprojekt.getherfit.group
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import de.progresstinators.getherfit.R
-import de.progresstinators.getherfit.settings.Settings
-import de.progresstinators.getherfit.shared.fragments.OverviewFragment
-import de.progresstinators.getherfit.shared.fragments.TrainingFragment
+import de.weichwarenprojekt.getherfit.R
+import de.weichwarenprojekt.getherfit.data.Group
+import de.weichwarenprojekt.getherfit.settings.Settings
+import de.weichwarenprojekt.getherfit.shared.fragments.OverviewFragment
+import de.weichwarenprojekt.getherfit.shared.fragments.TrainingFragment
 
-class PersonalFragment: Fragment() {
+class GroupFragment(var group: Group) : Fragment() {
 
     /**
      * The view pager
@@ -32,8 +33,8 @@ class PersonalFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) : View {
-        val view = inflater.inflate(R.layout.fragment_personal, container, false)
+    ): View {
+        val view = inflater.inflate(R.layout.fragment_group, container, false)
 
         // Instantiate the view pager
         viewPager = view.findViewById(R.id.view_pager)
@@ -42,7 +43,7 @@ class PersonalFragment: Fragment() {
             override fun onPageSelected(position: Int) {
                 when (position) {
                     1 -> bottomNav.selectedItemId = R.id.training
-                    2 -> bottomNav.selectedItemId = R.id.todo
+                    2 -> bottomNav.selectedItemId = R.id.recipes
                     else -> bottomNav.selectedItemId = R.id.overview
                 }
                 super.onPageSelected(position)
@@ -51,17 +52,17 @@ class PersonalFragment: Fragment() {
 
         // Initialize the bottom navigation bar
         bottomNav = view.findViewById(R.id.bottom_navigation)
-        bottomNav.visibility = when(Settings.showBottomNav.value) {
+        bottomNav.visibility = when (Settings.showBottomNav.value) {
             true -> View.VISIBLE
             else -> View.GONE
         }
         bottomNav.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.training -> {
                     viewPager.setCurrentItem(1, true)
                     true
                 }
-                R.id.todo -> {
+                R.id.recipes -> {
                     viewPager.setCurrentItem(2, true)
                     true
                 }
@@ -84,6 +85,7 @@ class PersonalFragment: Fragment() {
          * @return The page count
          */
         override fun getItemCount(): Int = 3
+
         /**
          * Find the right view for a given position
          *
@@ -91,9 +93,9 @@ class PersonalFragment: Fragment() {
          * @return The corresponding fragment
          */
         override fun createFragment(position: Int): Fragment {
-            return when(position) {
+            return when (position) {
                 1 -> TrainingFragment()
-                2 -> TodoFragment()
+                2 -> RecipesFragment()
                 else -> OverviewFragment()
             }
         }

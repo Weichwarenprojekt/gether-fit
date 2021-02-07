@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.data
+package de.weichwarenprojekt.getherfit.data
 
 import android.graphics.Bitmap
 

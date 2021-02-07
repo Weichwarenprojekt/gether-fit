@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.shared.components
+package de.weichwarenprojekt.getherfit.shared.components
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import de.hdodenhof.circleimageview.CircleImageView
-import de.progresstinators.getherfit.R
+import de.weichwarenprojekt.getherfit.R
 
 class ImageButton @JvmOverloads constructor(
     context: Context,

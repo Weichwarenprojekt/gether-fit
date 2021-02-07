@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.progresstinators.getherfit">
+    package="de.weichwarenprojekt.getherfit">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GetherFit">
         <activity
-            android:name=".LoginActivity"
+            android:name="de.weichwarenprojekt.getherfit.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,18 +27,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".group.EditGroupActivity"
+            android:name="de.weichwarenprojekt.getherfit.group.EditGroupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".settings.SettingsActivity"
+            android:name="de.weichwarenprojekt.getherfit.settings.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name="de.weichwarenprojekt.getherfit.MainActivity"
             android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="de.progresstinators.getherfit.fileprovider"
+            android:authorities="de.weichwarenprojekt.getherfit.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

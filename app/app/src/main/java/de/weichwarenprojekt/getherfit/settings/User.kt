@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.settings
+package de.weichwarenprojekt.getherfit.settings
 
 import android.app.Activity
 import android.graphics.Bitmap
@@ -8,7 +8,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import de.progresstinators.getherfit.R
+import de.weichwarenprojekt.getherfit.R
 import java.io.InputStream
 import java.net.URL
 

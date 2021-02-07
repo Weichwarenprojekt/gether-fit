@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit
+package de.weichwarenprojekt.getherfit
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
-import de.progresstinators.getherfit.settings.User
-import de.progresstinators.getherfit.shared.BaseActivity
+import de.weichwarenprojekt.getherfit.settings.User
+import de.weichwarenprojekt.getherfit.shared.BaseActivity
 
 class LoginActivity : BaseActivity() {
 

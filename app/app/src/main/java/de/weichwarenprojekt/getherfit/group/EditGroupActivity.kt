@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.group
+package de.weichwarenprojekt.getherfit.group
 
 import android.os.Bundle
 import android.view.View
@@ -7,12 +7,12 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import de.progresstinators.getherfit.R
-import de.progresstinators.getherfit.data.Group
-import de.progresstinators.getherfit.settings.User
-import de.progresstinators.getherfit.shared.BaseActivity
-import de.progresstinators.getherfit.shared.components.ConfirmDialog
-import de.progresstinators.getherfit.shared.components.ImageBottomSheet
+import de.weichwarenprojekt.getherfit.R
+import de.weichwarenprojekt.getherfit.data.Group
+import de.weichwarenprojekt.getherfit.settings.User
+import de.weichwarenprojekt.getherfit.shared.BaseActivity
+import de.weichwarenprojekt.getherfit.shared.components.ConfirmDialog
+import de.weichwarenprojekt.getherfit.shared.components.ImageBottomSheet
 
 class EditGroupActivity : BaseActivity() {
 

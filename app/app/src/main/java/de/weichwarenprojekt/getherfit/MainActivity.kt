@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit
+package de.weichwarenprojekt.getherfit
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,14 +7,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import de.progresstinators.getherfit.data.Group
-import de.progresstinators.getherfit.group.EditGroupActivity
-import de.progresstinators.getherfit.group.GroupFragment
-import de.progresstinators.getherfit.personal.PersonalFragment
-import de.progresstinators.getherfit.settings.SettingsActivity
-import de.progresstinators.getherfit.settings.User
-import de.progresstinators.getherfit.shared.BaseActivity
-import de.progresstinators.getherfit.shared.components.ImageButton
+import de.weichwarenprojekt.getherfit.data.Group
+import de.weichwarenprojekt.getherfit.group.EditGroupActivity
+import de.weichwarenprojekt.getherfit.group.GroupFragment
+import de.weichwarenprojekt.getherfit.personal.PersonalFragment
+import de.weichwarenprojekt.getherfit.settings.SettingsActivity
+import de.weichwarenprojekt.getherfit.settings.User
+import de.weichwarenprojekt.getherfit.shared.BaseActivity
+import de.weichwarenprojekt.getherfit.shared.components.ImageButton
 
 
 class MainActivity : BaseActivity() {

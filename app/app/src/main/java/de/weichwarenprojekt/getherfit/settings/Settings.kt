@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.settings
+package de.weichwarenprojekt.getherfit.settings
 
 import android.app.Activity
 import android.content.Context

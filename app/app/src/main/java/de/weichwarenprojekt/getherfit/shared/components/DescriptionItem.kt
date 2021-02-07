@@ -1,11 +1,11 @@
-package de.progresstinators.getherfit.shared.components
+package de.weichwarenprojekt.getherfit.shared.components
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import de.progresstinators.getherfit.R
+import de.weichwarenprojekt.getherfit.R
 
 class DescriptionItem @JvmOverloads constructor(
     context: Context,

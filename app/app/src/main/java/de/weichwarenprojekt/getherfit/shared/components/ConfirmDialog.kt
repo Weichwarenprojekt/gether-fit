@@ -1,4 +1,4 @@
-package de.progresstinators.getherfit.shared.components
+package de.weichwarenprojekt.getherfit.shared.components
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import de.progresstinators.getherfit.R
+import de.weichwarenprojekt.getherfit.R
 
 
 /**
