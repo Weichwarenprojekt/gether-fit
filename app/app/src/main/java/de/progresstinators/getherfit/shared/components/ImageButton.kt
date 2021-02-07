@@ -1,6 +1,7 @@
 package de.progresstinators.getherfit.shared.components
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -26,12 +27,10 @@ class ImageButton @JvmOverloads constructor(
                 it,
                 R.styleable.ImageButton, 0, 0
             )
-            val logoImage = typedArray.getResourceId(
+            val imageRsc = typedArray.getResourceId(
                 R.styleable.ImageButton_logo,
-                R.drawable.logo
+                R.drawable.group
             )
-            val logo = findViewById<CircleImageView>(R.id.logo)
-            logo.setImageResource(logoImage)
             val titleText =
                 resources.getText(
                     typedArray.getResourceId(
@@ -39,16 +38,31 @@ class ImageButton @JvmOverloads constructor(
                         R.string.placeholder
                     )
                 )
-            val title = findViewById<TextView>(R.id.title)
-            val highlightingBackground = typedArray.getResourceId(
+            val background = typedArray.getResourceId(
                 R.styleable.ImageButton_highlightBackground,
                 R.drawable.nav_button_highlighting
             )
-            title.text = titleText
-            val highlighting = findViewById<View>(R.id.highlighting)
-            highlighting.setBackgroundResource(highlightingBackground)
+            updateView(titleText as String, background, imageRsc)
             typedArray.recycle()
         }
+    }
+
+    /**
+     * Update the image button
+     *
+     * @param titleText The text of the button
+     * @param background The highlighting background
+     * @param imageRsc The image resource (optional)
+     * @param image The actual image (optional)
+     */
+    fun updateView(titleText: String, background: Int, imageRsc: Int = R.drawable.group, image: Bitmap? = null) {
+        val title = findViewById<TextView>(R.id.title)
+        title.text = titleText
+        val highlighting = findViewById<View>(R.id.highlighting)
+        highlighting.setBackgroundResource(background)
+        val logo = findViewById<CircleImageView>(R.id.logo)
+        if (image != null) logo.setImageBitmap(image)
+        else logo.setImageResource(imageRsc)
     }
 
     /**

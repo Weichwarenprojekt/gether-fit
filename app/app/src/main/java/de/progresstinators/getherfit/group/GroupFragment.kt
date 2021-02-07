@@ -9,11 +9,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import de.progresstinators.getherfit.R
+import de.progresstinators.getherfit.data.Group
 import de.progresstinators.getherfit.settings.Settings
 import de.progresstinators.getherfit.shared.fragments.OverviewFragment
 import de.progresstinators.getherfit.shared.fragments.TrainingFragment
 
-class GroupFragment : Fragment() {
+class GroupFragment(var group: Group) : Fragment() {
 
     /**
      * The view pager
@@ -51,7 +52,7 @@ class GroupFragment : Fragment() {
 
         // Initialize the bottom navigation bar
         bottomNav = view.findViewById(R.id.bottom_navigation)
-        bottomNav.visibility = when(Settings.showBottomNav.value) {
+        bottomNav.visibility = when (Settings.showBottomNav.value) {
             true -> View.VISIBLE
             else -> View.GONE
         }

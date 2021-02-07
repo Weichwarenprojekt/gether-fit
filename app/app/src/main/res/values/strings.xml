@@ -10,6 +10,7 @@
     <string name="description_gallery">Gallery</string>
     <string name="description_trashcan">Trashcan</string>
     <string name="description_edit">Edit</string>
+    <string name="description_share">Share</string>
 
     <!-- The image bottom sheet -->
     <string name="bottom_image_title">Add Image</string>
@@ -35,7 +36,8 @@
     <string name="edit_group_delete">Delete</string>
     <string name="edit_group_leave">Leave</string>
     <string name="edit_group_name">Name</string>
-    <string name="edit_group_name_hint">Insert Group Name</string>
+    <string name="edit_group_name_hint">The Group Name</string>
+    <string name="edit_group_name_error">Please provide a name!</string>
 
     <!-- The overview fragment -->
     <string name="overview">Overview</string>

@@ -3,6 +3,8 @@ package de.progresstinators.getherfit
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import de.progresstinators.getherfit.data.Group
@@ -22,8 +24,18 @@ class MainActivity : BaseActivity() {
      */
     companion object {
         const val SETTINGS = 1
-        const val ADD_GROUP = 2
+        const val EDIT_GROUP = 2
     }
+
+    /**
+     * The share button
+     */
+    private lateinit var shareButton: ImageView
+
+    /**
+     * The edit button
+     */
+    private lateinit var editButton: ImageView
 
     /**
      * The button for the personal view
@@ -31,9 +43,24 @@ class MainActivity : BaseActivity() {
     private lateinit var personalButton: ImageButton
 
     /**
-     * The button for the dummy group
+     * The container for the group buttons
      */
-    private lateinit var groupButton: ImageButton
+    private lateinit var groupView: LinearLayout
+
+    /**
+     * The active groups
+     */
+    private var groups = HashMap<String, Pair<Group, ImageButton>>()
+
+    /**
+     * The currently opened group
+     */
+    private var group = Group()
+
+    /**
+     * A potential new group
+     */
+    private var newGroup = Group()
 
     /**
      * Initialize the activity
@@ -41,17 +68,17 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        shareButton = findViewById(R.id.share_group)
+        editButton = findViewById(R.id.edit_group)
         personalButton = findViewById(R.id.personal_space)
-        personalButton.showHighlighting(true)
-        groupButton = findViewById(R.id.dummy_group)
-        showFragment(PersonalFragment())
+        groupView = findViewById(R.id.groups)
+        updateView()
     }
 
     /**
      * Check if the settings changed something about the appearance
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        println(resultCode)
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SETTINGS) {
             if (resultCode == SettingsActivity.CHANGED) {
@@ -60,37 +87,115 @@ class MainActivity : BaseActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-        } else if (requestCode == ADD_GROUP && resultCode == EditGroupActivity.GROUP_ADDED) {
-            println("New Group")
+        } else if (requestCode == EDIT_GROUP && resultCode == EditGroupActivity.GROUP_ADDED) {
+            addGroup(newGroup)
+        } else if (requestCode == EDIT_GROUP && resultCode == EditGroupActivity.GROUP_MODIFIED) {
+            updateGroups()
+        } else if (requestCode == EDIT_GROUP && resultCode == EditGroupActivity.GROUP_DELETED) {
+            groups.remove(group.id)
+            updateGroups()
+            openPersonal()
         }
+    }
+
+    /**
+     * Update the activity view
+     */
+    private fun updateView() {
+        // Open the right content and highlight the corresponding button
+        openPersonal()
+
+        // Fill the navigation with groups
+        val groupList = ArrayList<Group>(
+            listOf(
+                Group(id = User.email, name = "Group"),
+                Group(id = "213", name = "Another")
+            )
+        )
+        for (group in groupList) addGroup(group)
+    }
+
+    /**
+     * Add a given group to the view
+     *
+     * @group The corresponding group
+     */
+    private fun addGroup(group: Group) {
+        // Create the image button
+        val imageButton = ImageButton(this)
+        groups[group.id] = Pair(group, imageButton)
+        groupView.addView(imageButton)
+        updateGroups()
+
+        // Listen for click events
+        imageButton.setOnClickListener {
+            openGroup(groups[group.id]!!)
+        }
+    }
+
+    /**
+     * Update the group view
+     */
+    private fun updateGroups() {
+        groupView.removeAllViews()
+        for (group in groups.values) {
+            group.second.updateView(group.first.name, R.drawable.nav_button_highlighting, image = group.first.image)
+            groupView.addView(group.second)
+        }
+    }
+
+    /**
+     * Open a group
+     *
+     * @param groupPair The corresponding Group/ImageButton pair
+     */
+    private fun openGroup(groupPair: Pair<Group, ImageButton>) {
+        shareButton.visibility = View.VISIBLE
+        editButton.visibility = View.VISIBLE
+        personalButton.showHighlighting(false)
+        for (group in groups.values) group.second.showHighlighting(false)
+        groupPair.second.showHighlighting(true)
+        group = groupPair.first
+        showFragment(GroupFragment(groupPair.first))
+    }
+
+    /**
+     * Open the personal view
+     */
+    private fun openPersonal() {
+        shareButton.visibility = View.GONE
+        editButton.visibility = View.GONE
+        personalButton.showHighlighting(true)
+        for (group in groups.values) group.second.showHighlighting(false)
+        showFragment(PersonalFragment())
     }
 
     /**
      * Open the personal view
      */
     fun openPersonal(v: View) {
-        personalButton.showHighlighting(true)
-        groupButton.showHighlighting(false)
-        showFragment(PersonalFragment())
-    }
-
-    /**
-     * Open a group
-     */
-    fun openGroup(v: View) {
-        personalButton.showHighlighting(false)
-        groupButton.showHighlighting(true)
-        showFragment(GroupFragment())
+        openPersonal()
     }
 
     /**
      * Add a group
      */
     fun addGroup(v: View) {
-        EditGroupActivity.prepare(true, Group(User.email))
+        newGroup = Group(User.email)
+        EditGroupActivity.prepare(true, newGroup)
         val intent = Intent(this, EditGroupActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-        startActivityForResult(intent, ADD_GROUP)
+        startActivityForResult(intent, EDIT_GROUP)
+    }
+
+    /**
+     * Edit the currently opened group
+     */
+    fun editGroup(v: View) {
+        EditGroupActivity.prepare(false, group)
+        val intent = Intent(this, EditGroupActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        startActivityForResult(intent, EDIT_GROUP)
     }
 
     /**

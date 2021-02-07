@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import de.progresstinators.getherfit.R
 import de.progresstinators.getherfit.data.Group
 import de.progresstinators.getherfit.settings.User
@@ -24,6 +25,11 @@ class EditGroupActivity : BaseActivity() {
          * The result if a group was modified
          */
         const val GROUP_MODIFIED = 2
+
+        /**
+         * The result if a group was deleted
+         */
+        const val GROUP_DELETED = 3
 
         /**
          * True if a new group shall be added (otherwise activity will be in modify mode)
@@ -48,11 +54,23 @@ class EditGroupActivity : BaseActivity() {
     }
 
     /**
+     * The layout of the name input
+     */
+    lateinit var nameInputLayout: TextInputLayout
+
+    /**
+     * The actual name input
+     */
+    lateinit var nameInput: TextInputEditText
+
+    /**
      * Initialize the activity
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_group)
+        nameInputLayout = findViewById(R.id.name_input_layout)
+        nameInput = findViewById(R.id.name_input)
         updateView()
     }
 
@@ -69,18 +87,17 @@ class EditGroupActivity : BaseActivity() {
         updateImage()
 
         // Update the name input
-        val nameInput = findViewById<TextInputEditText>(R.id.name_input)
         nameInput.setText(group.name)
 
         // Update the leave/delete buttons
         if (addGroup) return
         val deleteButton = findViewById<AppCompatButton>(R.id.delete_button)
-        deleteButton.visibility = when(User.email){
+        deleteButton.visibility = when (User.email) {
             group.id -> View.VISIBLE
             else -> View.GONE
         }
         val leaveButton = findViewById<AppCompatButton>(R.id.leave_button)
-        leaveButton.visibility = when(User.email){
+        leaveButton.visibility = when (User.email) {
             group.id -> View.GONE
             else -> View.VISIBLE
         }
@@ -101,10 +118,8 @@ class EditGroupActivity : BaseActivity() {
     fun modifyImage(v: View) {
         v.isEnabled = false
         ImageBottomSheet { result, image ->
-            if (result == ImageBottomSheet.ADD_IMAGE) group.image =
-                image
-            else if (result == ImageBottomSheet.DELETE_IMAGE) group.image =
-                null
+            if (result == ImageBottomSheet.ADD_IMAGE) group.image = image
+            else if (result == ImageBottomSheet.DELETE_IMAGE) group.image = null
             if (result != ImageBottomSheet.EMPTY) updateImage()
             v.isEnabled = true
         }.show(supportFragmentManager, "modify_group_image")
@@ -114,10 +129,29 @@ class EditGroupActivity : BaseActivity() {
      * Apply the creation/modification of the group
      */
     fun apply(v: View) {
-        setResult(when(addGroup) {
-            true -> GROUP_ADDED
-            else -> GROUP_MODIFIED
-        })
+        // Check if a name is given
+        val newName: String = nameInput.text.toString()
+        if (newName.isEmpty()) {
+            nameInputLayout.error = getString(R.string.edit_group_name_error)
+            return
+        }
+        group.name = newName
+
+        // Set the result and return
+        setResult(
+            when (addGroup) {
+                true -> GROUP_ADDED
+                else -> GROUP_MODIFIED
+            }
+        )
+        onBackPressed()
+    }
+
+    /**
+     * Delete the group
+     */
+    fun deleteGroup(v: View) {
+        setResult(GROUP_DELETED)
         onBackPressed()
     }
 
