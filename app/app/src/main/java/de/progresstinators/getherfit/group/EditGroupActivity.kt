@@ -11,6 +11,7 @@ import de.progresstinators.getherfit.R
 import de.progresstinators.getherfit.data.Group
 import de.progresstinators.getherfit.settings.User
 import de.progresstinators.getherfit.shared.BaseActivity
+import de.progresstinators.getherfit.shared.components.ConfirmDialog
 import de.progresstinators.getherfit.shared.components.ImageBottomSheet
 
 class EditGroupActivity : BaseActivity() {
@@ -30,6 +31,11 @@ class EditGroupActivity : BaseActivity() {
          * The result if a group was deleted
          */
         const val GROUP_DELETED = 3
+
+        /**
+         * The result if user left the group
+         */
+        const val GROUP_LEFT = 4
 
         /**
          * True if a new group shall be added (otherwise activity will be in modify mode)
@@ -148,11 +154,23 @@ class EditGroupActivity : BaseActivity() {
     }
 
     /**
+     * Leave the group
+     */
+    fun leaveGroup(v: View) {
+        ConfirmDialog(getString(R.string.edit_group_leave), getString(R.string.edit_group_leave_description)) {
+            setResult(GROUP_LEFT)
+            onBackPressed()
+        }.show(supportFragmentManager, "confirm_leave")
+    }
+
+    /**
      * Delete the group
      */
     fun deleteGroup(v: View) {
-        setResult(GROUP_DELETED)
-        onBackPressed()
+        ConfirmDialog(getString(R.string.edit_group_delete), getString(R.string.edit_group_delete_description)) {
+            setResult(GROUP_DELETED)
+            onBackPressed()
+        }.show(supportFragmentManager, "confirm_delete")
     }
 
     /**

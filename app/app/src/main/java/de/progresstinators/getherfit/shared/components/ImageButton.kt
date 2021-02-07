@@ -28,18 +28,18 @@ class ImageButton @JvmOverloads constructor(
                 R.styleable.ImageButton, 0, 0
             )
             val imageRsc = typedArray.getResourceId(
-                R.styleable.ImageButton_logo,
+                R.styleable.ImageButton_image_button_logo,
                 R.drawable.group
             )
             val titleText =
                 resources.getText(
                     typedArray.getResourceId(
-                        R.styleable.ImageButton_title,
+                        R.styleable.ImageButton_image_button_title,
                         R.string.placeholder
                     )
                 )
             val background = typedArray.getResourceId(
-                R.styleable.ImageButton_highlightBackground,
+                R.styleable.ImageButton_image_button_background,
                 R.drawable.nav_button_highlighting
             )
             updateView(titleText as String, background, imageRsc)

@@ -95,6 +95,10 @@ class MainActivity : BaseActivity() {
             groups.remove(group.id)
             updateGroups()
             openPersonal()
+        } else if (requestCode == EDIT_GROUP && resultCode == EditGroupActivity.GROUP_LEFT) {
+            groups.remove(group.id)
+            updateGroups()
+            openPersonal()
         }
     }
 

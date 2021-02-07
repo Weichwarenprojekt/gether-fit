@@ -26,7 +26,7 @@ class DescriptionItem @JvmOverloads constructor(
             )
             val titleText = resources.getText(
                 typedArray.getResourceId(
-                    R.styleable.DescriptionItem_text,
+                    R.styleable.DescriptionItem_description_title,
                     R.string.placeholder
                 )
             )
@@ -34,7 +34,7 @@ class DescriptionItem @JvmOverloads constructor(
             title.text = titleText
             val descriptionText = resources.getText(
                 typedArray.getResourceId(
-                    R.styleable.DescriptionItem_description,
+                    R.styleable.DescriptionItem_description_text,
                     R.string.placeholder
                 )
             )

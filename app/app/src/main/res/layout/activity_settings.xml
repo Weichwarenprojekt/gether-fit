@@ -67,14 +67,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
-                    android:contentDescription="@string/description_edit"
-                    app:layout_constraintTop_toTopOf="@id/user_image"
-                    app:layout_constraintLeft_toLeftOf="@id/user_image"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/description_edit"
                     android:onClick="modifyImage"
                     android:src="@drawable/ic_baseline_edit_24"
-                    android:background="@drawable/rounded_button"/>
+                    app:layout_constraintLeft_toLeftOf="@id/user_image"
+                    app:layout_constraintTop_toTopOf="@id/user_image" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -90,16 +90,16 @@
                         android:id="@+id/credentials"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:description="@string/placeholder"
-                        app:text="@string/placeholder" />
+                        app:description_text="@string/placeholder"
+                        app:description_title="@string/placeholder" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="144dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="8dp"
-                        android:onClick="logOut"
                         android:background="@drawable/rounded_button"
                         android:drawableStart="@drawable/ic_baseline_login_24"
+                        android:onClick="logOut"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
                         android:text="@string/settings_logout"
@@ -133,8 +133,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="64dp"
-                    app:description="@string/settings_bottom_bar_description"
-                    app:text="@string/settings_bottom_bar" />
+                    app:description_text="@string/settings_bottom_bar_description"
+                    app:description_title="@string/settings_bottom_bar" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_bottom_bar"
@@ -149,8 +149,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:description="@string/settings_theme_description"
-                app:text="@string/settings_theme" />
+                app:description_text="@string/settings_theme_description"
+                app:description_title="@string/settings_theme" />
 
             <LinearLayout
                 android:id="@+id/theme_selection"
@@ -165,18 +165,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="showNormalTheme"
-                    app:highlightBackground="@drawable/rounded_background_primary"
-                    app:logo="@drawable/theme_normal"
-                    app:title="@string/settings_theme_normal" />
+                    app:image_button_background="@drawable/rounded_background_primary"
+                    app:image_button_logo="@drawable/theme_normal"
+                    app:image_button_title="@string/settings_theme_normal" />
 
                 <de.progresstinators.getherfit.shared.components.ImageButton
                     android:id="@+id/button_klvad_theme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="showKLVADTheme"
-                    app:highlightBackground="@drawable/rounded_background_primary"
-                    app:logo="@drawable/theme_klvad"
-                    app:title="@string/settings_theme_klvad" />
+                    app:image_button_background="@drawable/rounded_background_primary"
+                    app:image_button_logo="@drawable/theme_klvad"
+                    app:image_button_title="@string/settings_theme_klvad" />
             </LinearLayout>
 
 
@@ -197,18 +197,18 @@
                 app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginBottom="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
 
                 <de.progresstinators.getherfit.shared.components.DescriptionItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="64dp"
-                    app:description="@string/settings_personal_overview_description"
+                    app:description_text="@string/settings_personal_overview_description"
+                    app:description_title="@string/settings_personal_overview"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:text="@string/settings_personal_overview" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_personal_overview"
