@@ -59,7 +59,7 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_image"
-                    style="@style/ProfilePicture"
+                    style="@style/profile_picture"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
                     android:src="@drawable/person"
