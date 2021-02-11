@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		2863A74425D1CE1C009EBDF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2863A74325D1CE1C009EBDF3 /* ContentView.swift */; };
 		2863A74625D1CE1C009EBDF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2863A74525D1CE1C009EBDF3 /* Assets.xcassets */; };
 		2863A74925D1CE1C009EBDF3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2863A74825D1CE1C009EBDF3 /* Preview Assets.xcassets */; };
+		8D5D49C746FE98488F79CA72 /* Pods_GetherFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9E8FC2E39CB8B78EE2B6FC /* Pods_GetherFit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,9 @@
 		2863A74525D1CE1C009EBDF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2863A74825D1CE1C009EBDF3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2863A74A25D1CE1C009EBDF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC5FE9903F9538F6382276F5 /* Pods-GetherFit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetherFit.debug.xcconfig"; path = "Target Support Files/Pods-GetherFit/Pods-GetherFit.debug.xcconfig"; sourceTree = "<group>"; };
+		BC9E8FC2E39CB8B78EE2B6FC /* Pods_GetherFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetherFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1DC2ECD05E28DF42E924C0 /* Pods-GetherFit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetherFit.release.xcconfig"; path = "Target Support Files/Pods-GetherFit/Pods-GetherFit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +31,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D5D49C746FE98488F79CA72 /* Pods_GetherFit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		248CD37C81EF1BE6A20DC4AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC5FE9903F9538F6382276F5 /* Pods-GetherFit.debug.xcconfig */,
+				CF1DC2ECD05E28DF42E924C0 /* Pods-GetherFit.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2863A73525D1CE1C009EBDF3 = {
 			isa = PBXGroup;
 			children = (
 				2863A74025D1CE1C009EBDF3 /* GetherFit */,
 				2863A73F25D1CE1C009EBDF3 /* Products */,
+				248CD37C81EF1BE6A20DC4AA /* Pods */,
+				F77C072D7BEE9AB71054F24B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +85,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		F77C072D7BEE9AB71054F24B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC9E8FC2E39CB8B78EE2B6FC /* Pods_GetherFit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -76,6 +100,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2863A74D25D1CE1C009EBDF3 /* Build configuration list for PBXNativeTarget "GetherFit" */;
 			buildPhases = (
+				65A390EBD210AF5612805E86 /* [CP] Check Pods Manifest.lock */,
 				2863A73A25D1CE1C009EBDF3 /* Sources */,
 				2863A73B25D1CE1C009EBDF3 /* Frameworks */,
 				2863A73C25D1CE1C009EBDF3 /* Resources */,
@@ -132,6 +157,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		65A390EBD210AF5612805E86 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GetherFit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2863A73A25D1CE1C009EBDF3 /* Sources */ = {
@@ -264,6 +314,7 @@
 		};
 		2863A74E25D1CE1C009EBDF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC5FE9903F9538F6382276F5 /* Pods-GetherFit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -286,6 +337,7 @@
 		};
 		2863A74F25D1CE1C009EBDF3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF1DC2ECD05E28DF42E924C0 /* Pods-GetherFit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
