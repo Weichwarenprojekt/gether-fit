@@ -1,8 +1,10 @@
 package de.weichwarenprojekt.getherfit
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -10,11 +12,12 @@ import androidx.fragment.app.FragmentTransaction
 import de.weichwarenprojekt.getherfit.data.Group
 import de.weichwarenprojekt.getherfit.group.EditGroupActivity
 import de.weichwarenprojekt.getherfit.group.GroupFragment
-import de.weichwarenprojekt.getherfit.personal.PersonalFragment
+import de.weichwarenprojekt.getherfit.home.HomeFragment
 import de.weichwarenprojekt.getherfit.settings.SettingsActivity
 import de.weichwarenprojekt.getherfit.settings.User
 import de.weichwarenprojekt.getherfit.shared.BaseActivity
 import de.weichwarenprojekt.getherfit.shared.components.ImageButton
+import de.weichwarenprojekt.getherfit.shared.ScrollWatcher
 
 
 class MainActivity : BaseActivity() {
@@ -46,6 +49,11 @@ class MainActivity : BaseActivity() {
      * The container for the group buttons
      */
     private lateinit var groupView: LinearLayout
+
+    /**
+     * The currently shown content fragment
+     */
+    private lateinit var content: Fragment
 
     /**
      * The active groups
@@ -117,6 +125,25 @@ class MainActivity : BaseActivity() {
             )
         )
         for (group in groupList) addGroup(group)
+
+        // Check if the user scrolled down and hide dynamically hide the navigation
+        var visible = true
+        val toolbarHeight = resources.getDimension(R.dimen.toolbar_height)
+        val toolbarThreshold = resources.getDimension(R.dimen.toolbar_hide_threshold)
+        val toolbar = findViewById<ViewGroup>(R.id.toolbar)
+        val bottomNavHeight = resources.getDimension(R.dimen.bottom_nav_height)
+        ScrollWatcher.onScroll = { scrollY ->
+            val bottomNav = content.view!!.findViewById<View>(R.id.bottom_navigation)
+            if (scrollY > toolbarThreshold && visible) {
+                visible = false
+                ObjectAnimator.ofFloat(toolbar, "y", -toolbarHeight).start()
+                ObjectAnimator.ofFloat(bottomNav, "translationY", bottomNavHeight).start()
+            } else if (scrollY < toolbarThreshold && !visible) {
+                visible = true
+                ObjectAnimator.ofFloat(toolbar, "y", 0.0f).start()
+                ObjectAnimator.ofFloat(bottomNav, "translationY", 0.0f).start()
+            }
+        }
     }
 
     /**
@@ -171,7 +198,7 @@ class MainActivity : BaseActivity() {
         editButton.visibility = View.GONE
         personalButton.showHighlighting(true)
         for (group in groups.values) group.second.showHighlighting(false)
-        showFragment(PersonalFragment())
+        showFragment(HomeFragment())
     }
 
     /**
@@ -217,6 +244,7 @@ class MainActivity : BaseActivity() {
      * @param fragment The content fragment
      */
     private fun showFragment(fragment: Fragment) {
+        content = fragment
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
         ft.replace(R.id.content, fragment)
         ft.commit()

@@ -15,32 +15,32 @@
         </shape>
     </item>
     <item
-        android:top="8dp"
-        android:left="8dp"
-        android:right="8dp">
+        android:top="?attr/cornerRadius"
+        android:left="?attr/cornerRadius"
+        android:right="?attr/cornerRadius">
         <shape
             android:shape="rectangle">
-            <corners android:radius="8dp" />
+            <corners android:radius="?attr/cornerRadius" />
             <solid android:color="?attr/colorPrimaryVariant" />
             <size android:height="3px" />
         </shape>
     </item>
     <item
-        android:width="8dp">
+        android:width="?attr/cornerRadius">
         <shape
             android:layout_width="match_parent"
             android:shape="rectangle">
-            <corners android:bottomRightRadius="8dp"/>
+            <corners android:bottomRightRadius="?attr/cornerRadius"/>
             <solid android:color="?attr/colorPrimary" />
         </shape>
     </item>
     <item
         android:gravity="right"
-        android:width="8dp">
+        android:width="?attr/cornerRadius">
         <shape
             android:layout_width="match_parent"
             android:shape="rectangle">
-            <corners android:bottomLeftRadius="8dp"/>
+            <corners android:bottomLeftRadius="?attr/cornerRadius"/>
             <solid android:color="?attr/colorPrimary" />
         </shape>
     </item>

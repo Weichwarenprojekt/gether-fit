@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The toolbar -->
+    <dimen name="toolbar_height">156dp</dimen>
+    <dimen name="toolbar_hide_threshold">100dp</dimen>
+
+    <!-- The bottom navigation -->
+    <dimen name="bottom_nav_height">56dp</dimen>
+</resources>

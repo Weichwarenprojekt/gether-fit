@@ -2,6 +2,7 @@
     <string name="app_name">GetherFit</string>
     <string name="app_name_alias">KLVAD</string>
     <string name="placeholder">Placeholder</string>
+    <string name="number">42</string>
 
     <!-- Content descriptions -->
     <string name="description_settings">Settings</string>
@@ -11,6 +12,7 @@
     <string name="description_trashcan">Trashcan</string>
     <string name="description_edit">Edit</string>
     <string name="description_share">Share</string>
+    <string name="description_dashboard">Dashboard</string>
 
     <!-- The image bottom sheet -->
     <string name="bottom_image_title">Add Image</string>
@@ -30,7 +32,7 @@
     <string name="login_logout">User logged out!</string>
 
     <!-- The main screen -->
-    <string name="main_personal">Personal</string>
+    <string name="main_home">Home</string>
     <string name="main_group_add">Add Group</string>
 
     <!-- The add group screen -->
@@ -47,15 +49,22 @@
 
     <!-- The overview fragment -->
     <string name="overview">Overview</string>
+    <string name="overview_sessions">Sessions</string>
+    <string name="overview_exercises">Exercises</string>
+    <string name="overview_workouts">Workouts Per Week</string>
+    <string name="overview_muscles">Trained Muscle Groups</string>
 
-    <!-- The to do fragment -->
-    <string name="todo">Todo</string>
+    <!-- The routines fragment -->
+    <string name="routines">Routines</string>
 
     <!-- The training fragment -->
     <string name="training">Training</string>
 
     <!-- The recipes fragment -->
     <string name="recipes">Recipes</string>
+
+    <!-- The events fragment -->
+    <string name="events">Events</string>
 
     <!-- The settings screen -->
     <string name="settings">Settings</string>

@@ -11,8 +11,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import de.weichwarenprojekt.getherfit.R
 import de.weichwarenprojekt.getherfit.data.Group
 import de.weichwarenprojekt.getherfit.settings.Settings
-import de.weichwarenprojekt.getherfit.shared.fragments.OverviewFragment
-import de.weichwarenprojekt.getherfit.shared.fragments.TrainingFragment
+import de.weichwarenprojekt.getherfit.shared.ScrollWatcher
+import de.weichwarenprojekt.getherfit.shared.overview.OverviewFragment
 
 class GroupFragment(var group: Group) : Fragment() {
 
@@ -29,24 +29,23 @@ class GroupFragment(var group: Group) : Fragment() {
     /***
      * Initialize the view
      */
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_group, container, false)
 
         // Instantiate the view pager
         viewPager = view.findViewById(R.id.view_pager)
-        viewPager.adapter = ScreenSlidePagerAdapter(this)
+        val adapter = ScreenSlidePagerAdapter(this)
+        viewPager.adapter = adapter
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 when (position) {
                     1 -> bottomNav.selectedItemId = R.id.training
-                    2 -> bottomNav.selectedItemId = R.id.recipes
+                    2 -> bottomNav.selectedItemId = R.id.events
                     else -> bottomNav.selectedItemId = R.id.overview
                 }
                 super.onPageSelected(position)
+                val content: Fragment? = adapter.views[position]
+                if (content != null) ScrollWatcher.reset(content.view!!.findViewById(R.id.scroll_view))
             }
         })
 
@@ -62,7 +61,7 @@ class GroupFragment(var group: Group) : Fragment() {
                     viewPager.setCurrentItem(1, true)
                     true
                 }
-                R.id.recipes -> {
+                R.id.events -> {
                     viewPager.setCurrentItem(2, true)
                     true
                 }
@@ -77,10 +76,14 @@ class GroupFragment(var group: Group) : Fragment() {
     }
 
     /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
+     * The adapter for the view pager
      */
     private inner class ScreenSlidePagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+        /**
+         * The fragments
+         */
+        val views = Array<Fragment?>(3) { null }
+
         /**
          * @return The page count
          */
@@ -93,11 +96,12 @@ class GroupFragment(var group: Group) : Fragment() {
          * @return The corresponding fragment
          */
         override fun createFragment(position: Int): Fragment {
-            return when (position) {
-                1 -> TrainingFragment()
-                2 -> RecipesFragment()
-                else -> OverviewFragment()
+            when (position) {
+                1 -> views[1] = TrainingFragment()
+                2 -> views[2] = EventFragment()
+                else -> views[0] = OverviewFragment()
             }
+            return views[position]!!
         }
     }
 }

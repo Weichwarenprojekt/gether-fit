@@ -6,17 +6,23 @@
         <item name="colorPrimaryVariant">@color/grey_2</item>
         <item name="colorOnPrimary">@color/grey_3</item>
         <item name="colorError">@color/red_2</item>
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/green_2</item>
         <item name="colorSecondaryVariant">@color/green_1</item>
         <item name="colorOnSecondary">@color/black</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
-        <!-- Customize your theme here. -->
-        <item name="android:radius">3dp</item>
+
+        <!-- The corner radius -->
+        <item name="cornerRadius">8dp</item>
+
+        <!-- Disable automatic dark theme -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <!-- Set the text color to white -->
         <item name="android:textColor">@color/white</item>
-        <item name="android:colorControlNormal">@color/white</item>
     </style>
 
     <!-- The KLVAD theme -->
@@ -26,14 +32,22 @@
         <item name="colorPrimaryVariant">@color/blue_2</item>
         <item name="colorOnPrimary">@color/blue_3</item>
         <item name="colorError">@color/red_2</item>
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/yellow_2</item>
-        <item name="colorSecondaryVariant">@color/red_1</item>
-        <item name="colorOnSecondary">@color/yellow_1</item>
+        <item name="colorSecondaryVariant">@color/yellow_1</item>
+        <item name="colorOnSecondary">@color/red_1</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
-        <!-- Customize your theme here. -->
+
+        <!-- The corner radius -->
+        <item name="cornerRadius">8dp</item>
+
+        <!-- Disable automatic dark theme -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <!-- Set the text color to white -->
         <item name="android:textColor">@color/white</item>
     </style>
 

@@ -11,8 +11,8 @@
         android:icon="@drawable/ic_baseline_work_24"
         android:title="@string/training"/>
     <item
-        android:id="@+id/recipes"
+        android:id="@+id/events"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_menu_book_24"
-        android:title="@string/recipes"/>
+        android:icon="@drawable/ic_baseline_event_24"
+        android:title="@string/events"/>
 </menu>
