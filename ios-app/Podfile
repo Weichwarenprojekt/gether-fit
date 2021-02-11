@@ -7,5 +7,5 @@ target 'GetherFit' do
   use_frameworks!
 
   # Pods for GetherFit
-  # pod 'GoogleSignIn'
+  pod 'GoogleSignIn'
 end
