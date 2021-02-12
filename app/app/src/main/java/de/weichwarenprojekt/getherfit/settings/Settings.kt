@@ -31,7 +31,7 @@ object Settings {
     var showBottomNav = Value("show_bottom_nav", true)
 
     /**
-     * True if the personal overview should also reflect group data
+     * True if the personal overview should also reflect space data
      */
     var personalOverview = Value("personal_overview", true)
 

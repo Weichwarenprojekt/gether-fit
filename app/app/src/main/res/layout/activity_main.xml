@@ -38,7 +38,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/share_group"
+                android:id="@+id/share_space"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginEnd="12dp"
@@ -46,12 +46,12 @@
                 android:src="@drawable/ic_baseline_share_24" />
 
             <ImageView
-                android:id="@+id/edit_group"
+                android:id="@+id/edit_space"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginEnd="12dp"
                 android:contentDescription="@string/description_edit"
-                android:onClick="editGroup"
+                android:onClick="editSpace"
                 android:src="@drawable/ic_baseline_edit_24" />
 
             <ImageView
@@ -83,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:onClick="openPersonal"
+                    android:onClick="openHome"
                     app:image_button_logo="@drawable/home"
                     app:image_button_title="@string/main_home" />
 
@@ -95,7 +95,7 @@
                     android:layout_marginBottom="32dp" />
 
                 <LinearLayout
-                    android:id="@+id/groups"
+                    android:id="@+id/spaces"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal" />
@@ -103,9 +103,9 @@
                 <de.weichwarenprojekt.getherfit.shared.components.ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="addGroup"
-                    app:image_button_logo="@drawable/add_group"
-                    app:image_button_title="@string/main_group_add" />
+                    android:onClick="addSpace"
+                    app:image_button_logo="@drawable/add_space"
+                    app:image_button_title="@string/main_space_add" />
 
             </LinearLayout>
 

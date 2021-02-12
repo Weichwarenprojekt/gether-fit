@@ -1,4 +1,4 @@
-package de.weichwarenprojekt.getherfit.group
+package de.weichwarenprojekt.getherfit.space
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +9,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import de.weichwarenprojekt.getherfit.R
-import de.weichwarenprojekt.getherfit.data.Group
+import de.weichwarenprojekt.getherfit.data.Space
 import de.weichwarenprojekt.getherfit.settings.Settings
 import de.weichwarenprojekt.getherfit.shared.ScrollWatcher
 import de.weichwarenprojekt.getherfit.shared.overview.OverviewFragment
 
-class GroupFragment(var group: Group) : Fragment() {
+class SpaceFragment(var space: Space) : Fragment() {
 
     /**
      * The view pager
@@ -30,7 +30,7 @@ class GroupFragment(var group: Group) : Fragment() {
      * Initialize the view
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = inflater.inflate(R.layout.fragment_group, container, false)
+        val view = inflater.inflate(R.layout.fragment_space, container, false)
 
         // Instantiate the view pager
         viewPager = view.findViewById(R.id.view_pager)

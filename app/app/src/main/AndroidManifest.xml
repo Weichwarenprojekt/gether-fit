@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="de.weichwarenprojekt.getherfit.group.EditGroupActivity"
+            android:name="de.weichwarenprojekt.getherfit.space.EditSpaceActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="de.weichwarenprojekt.getherfit.settings.SettingsActivity"

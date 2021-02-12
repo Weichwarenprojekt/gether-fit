@@ -33,19 +33,19 @@
 
     <!-- The main screen -->
     <string name="main_home">Home</string>
-    <string name="main_group_add">Add Group</string>
+    <string name="main_space_add">Add Space</string>
 
-    <!-- The add group screen -->
-    <string name="edit_group">Add Group</string>
-    <string name="edit_group_modify">Modify Group</string>
-    <string name="edit_group_confirm">Confirm</string>
-    <string name="edit_group_delete">Delete</string>
-    <string name="edit_group_delete_description">Are you sure you want to delete this group?</string>
-    <string name="edit_group_leave">Leave</string>
-    <string name="edit_group_leave_description">Are you sure you want to leave this group?</string>
-    <string name="edit_group_name">Name</string>
-    <string name="edit_group_name_hint">The Group Name</string>
-    <string name="edit_group_name_error">Please provide a name!</string>
+    <!-- The edit space screen -->
+    <string name="edit_space">Add Space</string>
+    <string name="edit_space_modify">Modify Space</string>
+    <string name="edit_space_confirm">Confirm</string>
+    <string name="edit_space_delete">Delete</string>
+    <string name="edit_space_delete_description">Are you sure you want to delete this space?</string>
+    <string name="edit_space_leave">Leave</string>
+    <string name="edit_space_leave_description">Are you sure you want to leave this space?</string>
+    <string name="edit_space_name">Name</string>
+    <string name="edit_space_name_hint">The Space Name</string>
+    <string name="edit_space_name_error">Please provide a name!</string>
 
     <!-- The overview fragment -->
     <string name="overview">Overview</string>
@@ -80,5 +80,5 @@
     <string name="settings_theme_klvad">KLVAD</string>
     <string name="settings_personal">Personal View</string>
     <string name="settings_personal_overview">Personal Overview</string>
-    <string name="settings_personal_overview_description">Also reflect training data of all groups in the personal overview</string>
+    <string name="settings_personal_overview_description">Also reflect training data of all spaces in the personal overview</string>
 </resources>

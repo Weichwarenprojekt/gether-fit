@@ -56,7 +56,6 @@ class LoginActivity : BaseActivity() {
                 val account : GoogleSignInAccount? = task.getResult(ApiException::class.java)
                 if (account != null) showMain(account)
             } catch (e: ApiException) {
-                println(e.printStackTrace())
                 Toast.makeText(this, R.string.login_failed, Toast.LENGTH_LONG).show()
             }
         }

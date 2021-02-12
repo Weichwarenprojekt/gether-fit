@@ -9,12 +9,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import de.weichwarenprojekt.getherfit.data.Group
-import de.weichwarenprojekt.getherfit.group.EditGroupActivity
-import de.weichwarenprojekt.getherfit.group.GroupFragment
+import de.weichwarenprojekt.getherfit.data.DataService
+import de.weichwarenprojekt.getherfit.data.Space
+import de.weichwarenprojekt.getherfit.data.Space_
+import de.weichwarenprojekt.getherfit.space.EditSpaceActivity
+import de.weichwarenprojekt.getherfit.space.SpaceFragment
 import de.weichwarenprojekt.getherfit.home.HomeFragment
 import de.weichwarenprojekt.getherfit.settings.SettingsActivity
-import de.weichwarenprojekt.getherfit.settings.User
 import de.weichwarenprojekt.getherfit.shared.BaseActivity
 import de.weichwarenprojekt.getherfit.shared.components.ImageButton
 import de.weichwarenprojekt.getherfit.shared.ScrollWatcher
@@ -22,12 +23,21 @@ import de.weichwarenprojekt.getherfit.shared.ScrollWatcher
 
 class MainActivity : BaseActivity() {
 
-    /**
-     * The possible activity request codes
-     */
     companion object {
+        /**
+         * The request code if the settings are opened
+         */
         const val SETTINGS = 1
-        const val EDIT_GROUP = 2
+
+        /**
+         * The request code if the editing activity is opened
+         */
+        const val EDIT_SPACE = 2
+
+        /**
+         * The selected index if the home view is open
+         */
+        const val HOME = -1
     }
 
     /**
@@ -43,12 +53,12 @@ class MainActivity : BaseActivity() {
     /**
      * The button for the personal view
      */
-    private lateinit var personalButton: ImageButton
+    private lateinit var homeButton: ImageButton
 
     /**
-     * The container for the group buttons
+     * The container for the space buttons
      */
-    private lateinit var groupView: LinearLayout
+    private lateinit var spaceView: LinearLayout
 
     /**
      * The currently shown content fragment
@@ -56,30 +66,26 @@ class MainActivity : BaseActivity() {
     private lateinit var content: Fragment
 
     /**
-     * The active groups
+     * The active spaces
      */
-    private var groups = HashMap<String, Pair<Group, ImageButton>>()
+    private var spaces = ArrayList<Pair<Space, ImageButton>>()
 
     /**
-     * The currently opened group
+     * The currently opened space
      */
-    private var group = Group()
-
-    /**
-     * A potential new group
-     */
-    private var newGroup = Group()
+    private var selected: Int = HOME
 
     /**
      * Initialize the activity
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DataService.init(this)
         setContentView(R.layout.activity_main)
-        shareButton = findViewById(R.id.share_group)
-        editButton = findViewById(R.id.edit_group)
-        personalButton = findViewById(R.id.personal_space)
-        groupView = findViewById(R.id.groups)
+        shareButton = findViewById(R.id.share_space)
+        editButton = findViewById(R.id.edit_space)
+        homeButton = findViewById(R.id.personal_space)
+        spaceView = findViewById(R.id.spaces)
         updateView()
     }
 
@@ -95,18 +101,11 @@ class MainActivity : BaseActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-        } else if (requestCode == EDIT_GROUP && resultCode == EditGroupActivity.GROUP_ADDED) {
-            addGroup(newGroup)
-        } else if (requestCode == EDIT_GROUP && resultCode == EditGroupActivity.GROUP_MODIFIED) {
-            updateGroups()
-        } else if (requestCode == EDIT_GROUP && resultCode == EditGroupActivity.GROUP_DELETED) {
-            groups.remove(group.id)
-            updateGroups()
-            openPersonal()
-        } else if (requestCode == EDIT_GROUP && resultCode == EditGroupActivity.GROUP_LEFT) {
-            groups.remove(group.id)
-            updateGroups()
-            openPersonal()
+        } else if (requestCode == EDIT_SPACE && resultCode == EditSpaceActivity.SPACE_MODIFIED) {
+            updateSpaces()
+        } else if (requestCode == EDIT_SPACE && resultCode == EditSpaceActivity.SPACE_REMOVED) {
+            updateSpaces()
+            openHome()
         }
     }
 
@@ -115,16 +114,10 @@ class MainActivity : BaseActivity() {
      */
     private fun updateView() {
         // Open the right content and highlight the corresponding button
-        openPersonal()
+        openHome()
 
-        // Fill the navigation with groups
-        val groupList = ArrayList<Group>(
-            listOf(
-                Group(id = User.email, name = "Group"),
-                Group(id = "213", name = "Another")
-            )
-        )
-        for (group in groupList) addGroup(group)
+        // Fill the navigation with spaces
+        updateSpaces()
 
         // Check if the user scrolled down and hide dynamically hide the navigation
         var visible = true
@@ -147,86 +140,86 @@ class MainActivity : BaseActivity() {
     }
 
     /**
-     * Add a given group to the view
-     *
-     * @group The corresponding group
+     * Update the space view
      */
-    private fun addGroup(group: Group) {
-        // Create the image button
-        val imageButton = ImageButton(this)
-        groups[group.id] = Pair(group, imageButton)
-        groupView.addView(imageButton)
-        updateGroups()
+    private fun updateSpaces() {
+        // Remove the previous views
+        spaceView.removeAllViews()
+        spaces.clear()
 
-        // Listen for click events
-        imageButton.setOnClickListener {
-            openGroup(groups[group.id]!!)
+        // Fill the space button pairs
+        val allSpaces = DataService.spaceBox.query().order(Space_.name).build().find()
+        for (i in allSpaces.indices) {
+            // Create the image button and add the space button pair
+            allSpaces[i].loadImage()
+            val imageButton = ImageButton(this)
+            imageButton.updateView(allSpaces[i].name, R.drawable.nav_button_highlighting, image = allSpaces[i].image)
+            spaceView.addView(imageButton)
+            spaces.add(Pair(allSpaces[i], imageButton))
+
+            // Listen for click events
+            imageButton.setOnClickListener {
+                openSpace(i)
+            }
         }
+
+        // Set the highlighting of the button
+        if (selected >= 0 && selected < allSpaces.size)  spaces[selected].second.showHighlighting(true)
+        else homeButton.showHighlighting(true)
     }
 
     /**
-     * Update the group view
-     */
-    private fun updateGroups() {
-        groupView.removeAllViews()
-        for (group in groups.values) {
-            group.second.updateView(group.first.name, R.drawable.nav_button_highlighting, image = group.first.image)
-            groupView.addView(group.second)
-        }
-    }
-
-    /**
-     * Open a group
+     * Open a space
      *
-     * @param groupPair The corresponding Group/ImageButton pair
+     * @param position The position of the space
      */
-    private fun openGroup(groupPair: Pair<Group, ImageButton>) {
+    private fun openSpace(position: Int) {
         shareButton.visibility = View.VISIBLE
         editButton.visibility = View.VISIBLE
-        personalButton.showHighlighting(false)
-        for (group in groups.values) group.second.showHighlighting(false)
-        groupPair.second.showHighlighting(true)
-        group = groupPair.first
-        showFragment(GroupFragment(groupPair.first))
+        homeButton.showHighlighting(false)
+        for (space in spaces) space.second.showHighlighting(false)
+        spaces[position].second.showHighlighting(true)
+        selected = position
+        showFragment(SpaceFragment(spaces[position].first))
     }
 
     /**
      * Open the personal view
      */
-    private fun openPersonal() {
+    private fun openHome() {
         shareButton.visibility = View.GONE
         editButton.visibility = View.GONE
-        personalButton.showHighlighting(true)
-        for (group in groups.values) group.second.showHighlighting(false)
+        homeButton.showHighlighting(true)
+        for (space in spaces) space.second.showHighlighting(false)
+        selected = HOME
         showFragment(HomeFragment())
     }
 
     /**
      * Open the personal view
      */
-    fun openPersonal(v: View) {
-        openPersonal()
+    fun openHome(v: View) {
+        openHome()
     }
 
     /**
-     * Add a group
+     * Add a space
      */
-    fun addGroup(v: View) {
-        newGroup = Group(User.email)
-        EditGroupActivity.prepare(true, newGroup)
-        val intent = Intent(this, EditGroupActivity::class.java)
+    fun addSpace(v: View) {
+        EditSpaceActivity.prepare(true)
+        val intent = Intent(this, EditSpaceActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-        startActivityForResult(intent, EDIT_GROUP)
+        startActivityForResult(intent, EDIT_SPACE)
     }
 
     /**
-     * Edit the currently opened group
+     * Edit the currently opened space
      */
-    fun editGroup(v: View) {
-        EditGroupActivity.prepare(false, group)
-        val intent = Intent(this, EditGroupActivity::class.java)
+    fun editSpace(v: View) {
+        EditSpaceActivity.prepare(false, spaces[selected].first)
+        val intent = Intent(this, EditSpaceActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-        startActivityForResult(intent, EDIT_GROUP)
+        startActivityForResult(intent, EDIT_SPACE)
     }
 
     /**

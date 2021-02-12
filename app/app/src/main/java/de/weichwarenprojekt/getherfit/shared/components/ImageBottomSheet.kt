@@ -119,7 +119,6 @@ class ImageBottomSheet(var onResult: (result: Int, image: Bitmap?) -> Unit) : Bo
                 result = ADD_IMAGE
                 dismiss()
             } catch (e: Exception) {
-                e.printStackTrace()
                 Toast.makeText(activity, R.string.bottom_image_gallery_error, Toast.LENGTH_LONG).show()
             }
         } else if (requestCode == FROM_GALLERY && resultCode == RESULT_OK) {
@@ -133,7 +132,6 @@ class ImageBottomSheet(var onResult: (result: Int, image: Bitmap?) -> Unit) : Bo
                 result = ADD_IMAGE
                 dismiss()
             } catch (e: Exception) {
-                e.printStackTrace()
                 Toast.makeText(activity, R.string.bottom_image_gallery_error, Toast.LENGTH_LONG).show()
             }
         }

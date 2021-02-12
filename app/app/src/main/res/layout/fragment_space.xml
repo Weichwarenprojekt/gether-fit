@@ -20,6 +20,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintWidth_max="300dp"
-        app:menu="@menu/group_bottom_nav_menu" />
+        app:menu="@menu/space_bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
