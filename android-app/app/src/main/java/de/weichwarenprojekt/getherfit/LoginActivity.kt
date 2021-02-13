@@ -2,6 +2,7 @@ package de.weichwarenprojekt.getherfit
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -9,6 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
+import de.weichwarenprojekt.getherfit.data.DataService
 import de.weichwarenprojekt.getherfit.settings.User
 import de.weichwarenprojekt.getherfit.shared.BaseActivity
 
@@ -75,6 +77,7 @@ class LoginActivity : BaseActivity() {
      */
     private fun showMain(account: GoogleSignInAccount) {
         User.logIn(account)
+        DataService.init(this)
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

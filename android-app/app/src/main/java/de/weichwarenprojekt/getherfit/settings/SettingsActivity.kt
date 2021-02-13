@@ -140,7 +140,7 @@ class SettingsActivity : BaseActivity() {
     /**
      * Close the activity
      */
-    fun closeSettings(v: View) {
+    fun close(v: View) {
         onBackPressed()
     }
 }

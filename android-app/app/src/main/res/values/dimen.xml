@@ -6,4 +6,7 @@
 
     <!-- The bottom navigation -->
     <dimen name="bottom_nav_height">56dp</dimen>
+
+    <!-- The spacing between chips navigation -->
+    <dimen name="chip_spacing">8dp</dimen>
 </resources>

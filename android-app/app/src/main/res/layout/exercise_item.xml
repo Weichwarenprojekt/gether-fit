@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name"
+        android:text="@string/placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/tags"
+        android:layout_marginTop="-4dp"
+        android:layout_marginBottom="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal"/>
+
+    <View style="@style/horizontal_divider"/>
+
+</LinearLayout>

@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scroll_view"
+    android:scrollbars="none"
     android:background="?attr/colorPrimaryVariant">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:paddingTop="@dimen/toolbar_height"
         android:paddingBottom="@dimen/bottom_nav_height"
         android:layout_width="match_parent"
@@ -16,12 +18,130 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/training"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            style="@style/h2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_exercises"
             android:layout_margin="12dp"
+            app:cardBackgroundColor="?attr/colorOnPrimary"
+            app:cardCornerRadius="?attr/cornerRadius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/picture_exercise"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/description_exercise"
+                    android:src="@drawable/ic_undraw_healthy_habit_bh5w"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toRightOf="@id/picture_exercise"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/picture_exercise"
+                    app:layout_constraintBottom_toBottomOf="@id/picture_exercise"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/h3"
+                        android:text="@string/training_exercises"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:text="@string/training_exercises_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_workouts"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            app:cardBackgroundColor="?attr/colorOnPrimary"
+            app:cardCornerRadius="?attr/cornerRadius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/picture_workouts"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/description_exercise"
+                    android:src="@drawable/ic_undraw_personal_trainer_ote3"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toRightOf="@id/picture_workouts"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/picture_workouts"
+                    app:layout_constraintBottom_toBottomOf="@id/picture_workouts"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/h3"
+                        android:text="@string/training_workouts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:text="@string/training_workouts_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/training_history"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="12dp"
             style="@style/h2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </ScrollView>

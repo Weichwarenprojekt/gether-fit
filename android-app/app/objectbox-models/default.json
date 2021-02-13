@@ -4,33 +4,88 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:4026782380751080055",
-      "lastPropertyId": "3:4067909802026531297",
-      "name": "Space",
+      "id": "1:3904695267495830350",
+      "lastPropertyId": "3:3842810037640928860",
+      "name": "Category",
       "properties": [
         {
-          "id": "1:7199139529019785743",
+          "id": "1:2557824916524345004",
+          "name": "name",
+          "indexId": "1:4171615068980018274",
+          "type": 9,
+          "flags": 2080
+        },
+        {
+          "id": "2:5797032985975636051",
+          "name": "color",
+          "indexId": "2:3489897817253987264",
+          "type": 5,
+          "flags": 44
+        },
+        {
+          "id": "3:3842810037640928860",
           "name": "id",
           "type": 6,
           "flags": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:770724888527095335",
+      "lastPropertyId": "2:7220391691570405977",
+      "name": "Exercise",
+      "properties": [
+        {
+          "id": "1:3972871988673461609",
+          "name": "name",
+          "indexId": "3:7280213995004643850",
+          "type": 9,
+          "flags": 2080
         },
         {
-          "id": "2:4218613425364124218",
+          "id": "2:7220391691570405977",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:3327892212167421686",
+          "name": "categories",
+          "targetId": "1:3904695267495830350"
+        }
+      ]
+    },
+    {
+      "id": "3:1432218115200609758",
+      "lastPropertyId": "3:738784722658504790",
+      "name": "Space",
+      "properties": [
+        {
+          "id": "1:1177200680950098190",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "2:6533746967109342277",
           "name": "imagePath",
           "type": 9
         },
         {
-          "id": "3:4067909802026531297",
-          "name": "name",
-          "type": 9
+          "id": "3:738784722658504790",
+          "name": "id",
+          "type": 6,
+          "flags": 1
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:4026782380751080055",
-  "lastIndexId": "0:0",
-  "lastRelationId": "0:0",
+  "lastEntityId": "3:1432218115200609758",
+  "lastIndexId": "3:7280213995004643850",
+  "lastRelationId": "1:3327892212167421686",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,

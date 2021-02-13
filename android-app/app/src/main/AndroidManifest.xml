@@ -19,21 +19,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GetherFit">
         <activity
-            android:name="de.weichwarenprojekt.getherfit.LoginActivity"
+            android:name=".space.training.WorkoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".space.training.ExerciseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="de.weichwarenprojekt.getherfit.space.EditSpaceActivity"
+            android:name=".space.EditSpaceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="de.weichwarenprojekt.getherfit.settings.SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="de.weichwarenprojekt.getherfit.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait" />
 
         <provider
@@ -46,6 +53,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
-
 
 </manifest>

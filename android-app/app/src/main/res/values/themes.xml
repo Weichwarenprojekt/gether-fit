@@ -84,6 +84,16 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="selected_chip">
+        <item name="chipBackgroundColor">?attr/colorSecondary</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="unselected_chip">
+        <item name="chipBackgroundColor">?attr/colorOnPrimary</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="profile_picture">
         <item name="civ_border_width">4dp</item>
         <item name="civ_border_color">@color/white</item>

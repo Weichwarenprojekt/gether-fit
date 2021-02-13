@@ -1,6 +1,7 @@
 package de.weichwarenprojekt.getherfit.shared
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import de.weichwarenprojekt.getherfit.R
 import de.weichwarenprojekt.getherfit.settings.Settings
@@ -32,6 +33,9 @@ abstract class BaseActivity : AppCompatActivity() {
         finish()
     }
 
+    /**
+     * Reload the activity
+     */
     fun reload() {
         finish()
         startActivity(intent)

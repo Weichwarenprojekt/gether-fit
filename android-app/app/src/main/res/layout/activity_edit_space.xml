@@ -28,7 +28,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="12dp"
-            android:contentDescription="@string/description_settings"
+            android:contentDescription="@string/description_close"
             android:onClick="close"
             android:src="@drawable/ic_baseline_close_24"
             app:layout_constraintRight_toRightOf="parent"

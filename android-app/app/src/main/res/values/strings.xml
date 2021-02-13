@@ -13,6 +13,11 @@
     <string name="description_edit">Edit</string>
     <string name="description_share">Share</string>
     <string name="description_dashboard">Dashboard</string>
+    <string name="description_exercise">Exercise</string>
+    <string name="description_workout">Workout</string>
+    <string name="description_close">Close</string>
+    <string name="description_search">Search</string>
+    <string name="description_no_result">No Result</string>
 
     <!-- The image bottom sheet -->
     <string name="bottom_image_title">Add Image</string>
@@ -59,6 +64,25 @@
 
     <!-- The training fragment -->
     <string name="training">Training</string>
+    <string name="training_exercises">Exercises</string>
+    <string name="training_exercises_description">Start or modify single exercises</string>
+    <string name="training_workouts">Workouts</string>
+    <string name="training_workouts_description">Start or modify workouts</string>
+    <string name="training_history">History</string>
+
+    <!-- The exercise activity -->
+    <string name="exercises">Exercises</string>
+    <string name="exercises_categories">Categories:</string>
+    <string name="exercises_all">All</string>
+    <string name="exercises_sort">Sort:</string>
+    <string name="exercises_sort_alphabetical">Alphabetical</string>
+    <string name="exercises_sort_recent">Recent</string>
+    <string name="exercises_sort_least_used">Least Used</string>
+    <string name="exercises_sort_random">Random</string>
+    <string name="exercises_no_result">No exercise found!</string>
+
+    <!-- The workout activity -->
+    <string name="workouts">Workouts</string>
 
     <!-- The recipes fragment -->
     <string name="recipes">Recipes</string>

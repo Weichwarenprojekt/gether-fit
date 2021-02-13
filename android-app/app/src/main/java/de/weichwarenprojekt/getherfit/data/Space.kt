@@ -14,20 +14,15 @@ import java.io.FileOutputStream
  * This class describes the data model of a space
  *
  * @param name The name of the space
+ * @param imagePath The image path
+ * @param id The id of the space
  */
 @Entity
-data class Space(var name: String = "") {
-
-    /**
-     * The id of the space
-     */
-    @Id
-    var id: Long = 0
-
-    /**
-     * The image path
-     */
-    var imagePath: String = ""
+data class Space(
+    var name: String = "",
+    var imagePath: String = "",
+    @Id var id: Long = 0
+) {
 
     /**
      * The image of the space

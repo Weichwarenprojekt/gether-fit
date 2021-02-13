@@ -13,6 +13,7 @@ import de.weichwarenprojekt.getherfit.data.Space
 import de.weichwarenprojekt.getherfit.settings.Settings
 import de.weichwarenprojekt.getherfit.shared.ScrollWatcher
 import de.weichwarenprojekt.getherfit.shared.overview.OverviewFragment
+import de.weichwarenprojekt.getherfit.space.training.TrainingFragment
 
 class SpaceFragment(var space: Space) : Fragment() {
 

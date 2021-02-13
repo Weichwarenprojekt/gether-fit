@@ -25,7 +25,9 @@ class ImageButton @JvmOverloads constructor(
         attrs?.let {
             val typedArray = context.obtainStyledAttributes(
                 it,
-                R.styleable.ImageButton, 0, 0
+                R.styleable.ImageButton,
+                0,
+                0
             )
             val imageRsc = typedArray.getResourceId(
                 R.styleable.ImageButton_image_button_logo,

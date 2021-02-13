@@ -80,7 +80,6 @@ class MainActivity : BaseActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DataService.init(this)
         setContentView(R.layout.activity_main)
         shareButton = findViewById(R.id.share_space)
         editButton = findViewById(R.id.edit_space)
