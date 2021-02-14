@@ -8,13 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import de.weichwarenprojekt.getherfit.R
 import de.weichwarenprojekt.getherfit.shared.ScrollWatcher
+import de.weichwarenprojekt.getherfit.space.training.exercises.ExerciseActivity
 
 class TrainingFragment : Fragment() {
 
     /**
      * Initialize the view
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         // Get the fragment layout
         val view = inflater.inflate(R.layout.fragment_training, container, false)
         ScrollWatcher.setActiveScrollbar(view.findViewById(R.id.scroll_view))

@@ -18,6 +18,8 @@
     <string name="description_close">Close</string>
     <string name="description_search">Search</string>
     <string name="description_no_result">No Result</string>
+    <string name="description_random">Random</string>
+    <string name="description_new">New</string>
 
     <!-- The image bottom sheet -->
     <string name="bottom_image_title">Add Image</string>
@@ -41,8 +43,8 @@
     <string name="main_space_add">Add Space</string>
 
     <!-- The edit space screen -->
-    <string name="edit_space">Add Space</string>
-    <string name="edit_space_modify">Modify Space</string>
+    <string name="edit_space">Edit Space</string>
+    <string name="edit_space_add">Add Space</string>
     <string name="edit_space_confirm">Confirm</string>
     <string name="edit_space_delete">Delete</string>
     <string name="edit_space_delete_description">Are you sure you want to delete this space?</string>
@@ -80,6 +82,22 @@
     <string name="exercises_sort_least_used">Least Used</string>
     <string name="exercises_sort_random">Random</string>
     <string name="exercises_no_result">No exercise found!</string>
+
+    <!-- The edit exercise screen -->
+    <string name="edit_exercise">Edit Exercise</string>
+    <string name="edit_exercise_add">Add Exercise</string>
+    <string name="edit_exercise_confirm">Confirm</string>
+    <string name="edit_exercise_delete">Delete</string>
+    <string name="edit_exercise_delete_description">Are you sure you want to delete this exercise?</string>
+    <string name="edit_exercise_name">Name</string>
+    <string name="edit_exercise_name_hint">The Exercise Name</string>
+    <string name="edit_exercise_name_error">Please provide a name!</string>
+    <string name="edit_exercise_category">Categories</string>
+    <string name="edit_exercise_category_error">Specify at least one category!</string>
+    <string name="edit_exercise_other">Other</string>
+    <string name="edit_exercise_other_reps">Reps</string>
+    <string name="edit_exercise_other_weight">Weight</string>
+    <string name="edit_exercise_other_description">Description</string>
 
     <!-- The workout activity -->
     <string name="workouts">Workouts</string>

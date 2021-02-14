@@ -1,6 +1,7 @@
-package de.weichwarenprojekt.getherfit.space.training
+package de.weichwarenprojekt.getherfit.space.training.exercises
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -16,11 +17,19 @@ import de.weichwarenprojekt.getherfit.data.Category_
 import de.weichwarenprojekt.getherfit.data.DataService
 import de.weichwarenprojekt.getherfit.data.Exercise_
 import de.weichwarenprojekt.getherfit.shared.BaseActivity
+import de.weichwarenprojekt.getherfit.shared.Utility
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class ExerciseActivity : BaseActivity() {
+
+    /**
+     * The request codes
+     */
+    companion object {
+        const val EDIT_EXERCISE = 1
+    }
 
     /**
      * The sorting possibilities
@@ -67,6 +76,15 @@ class ExerciseActivity : BaseActivity() {
     }
 
     /**
+     * Check if the list view has to be updated
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == EDIT_EXERCISE && resultCode == EditExerciseActivity.EXERCISE_EDITED)
+            updateList()
+    }
+
+    /**
      * Initialize the activity view
      */
     private fun initView() {
@@ -78,18 +96,25 @@ class ExerciseActivity : BaseActivity() {
             // Add the view
             val chip = Chip(this)
             val params =
-                ChipGroup.LayoutParams(ChipGroup.LayoutParams.WRAP_CONTENT, ChipGroup.LayoutParams.WRAP_CONTENT)
+                ChipGroup.LayoutParams(
+                    ChipGroup.LayoutParams.WRAP_CONTENT,
+                    ChipGroup.LayoutParams.WRAP_CONTENT
+                )
             params.setMargins(resources.getDimension(R.dimen.chip_spacing).toInt(), 0, 0, 0)
             chip.layoutParams = params
             chip.text = category.name
-            setChipStyle(chip, R.style.unselected_chip)
+            Utility.setChipStyle(this, chip, R.style.unselected_chip)
             categories.addView(chip)
             categoryChips.add(chip)
 
             // Listen for click events
             chip.setOnClickListener {
-                for (categoryChip in categoryChips) setChipStyle(categoryChip, R.style.unselected_chip)
-                setChipStyle(chip, R.style.selected_chip)
+                for (categoryChip in categoryChips) Utility.setChipStyle(
+                    this,
+                    categoryChip,
+                    R.style.unselected_chip
+                )
+                Utility.setChipStyle(this, chip, R.style.selected_chip)
                 selectedCategory = category
                 updateList()
             }
@@ -97,8 +122,12 @@ class ExerciseActivity : BaseActivity() {
 
         // Also listen for clicks on the category all button
         findViewById<View>(R.id.category_all).setOnClickListener {
-            for (categoryChip in categoryChips) setChipStyle(categoryChip, R.style.unselected_chip)
-            setChipStyle(categoryAll, R.style.selected_chip)
+            for (categoryChip in categoryChips) Utility.setChipStyle(
+                this,
+                categoryChip,
+                R.style.unselected_chip
+            )
+            Utility.setChipStyle(this, categoryAll, R.style.selected_chip)
             selectedCategory = null
             updateList()
         }
@@ -111,7 +140,10 @@ class ExerciseActivity : BaseActivity() {
 
         // Setup the list
         val list = findViewById<RecyclerView>(R.id.exercises)
-        adapter = ExerciseAdapter(this, DataService.exerciseBox.query().order(Exercise_.name).build().find())
+        adapter = ExerciseAdapter(
+            this,
+            DataService.exerciseBox.query().order(Exercise_.name).build().find()
+        )
         list.adapter = adapter
     }
 
@@ -157,7 +189,8 @@ class ExerciseActivity : BaseActivity() {
         val editText = findViewById<TextInputEditText>(R.id.filter_input)
         editText.visibility = View.VISIBLE
         if (editText.requestFocus()) {
-            val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm: InputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
         }
     }
@@ -229,22 +262,18 @@ class ExerciseActivity : BaseActivity() {
      * @param selected The condition deciding whether the chip is selected
      */
     private fun updateSorting(chip: Chip, selected: Boolean) {
-        if (selected) setChipStyle(chip, R.style.selected_chip)
-        else setChipStyle(chip, R.style.unselected_chip)
+        if (selected) Utility.setChipStyle(this, chip, R.style.selected_chip)
+        else Utility.setChipStyle(this, chip, R.style.unselected_chip)
     }
 
     /**
-     * Set the style of a chip
-     *
-     * @param chip The chip to be styled
-     * @param style The style to be applied
+     * Add an exercise
      */
-    @SuppressWarnings("ResourceType")
-    private fun setChipStyle(chip: Chip, style: Int) {
-        val ta = obtainStyledAttributes(style, intArrayOf(android.R.attr.textColor, R.attr.chipBackgroundColor))
-        chip.setTextColor(ta.getColor(0, getColor(R.color.white)))
-        chip.chipBackgroundColor = getColorStateList(ta.getResourceId(1, R.color.black))
-        ta.recycle()
+    fun addExercise(v: View) {
+        EditExerciseActivity.prepare(true)
+        val intent = Intent(this, EditExerciseActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        startActivityForResult(intent, EDIT_EXERCISE)
     }
 
     /**

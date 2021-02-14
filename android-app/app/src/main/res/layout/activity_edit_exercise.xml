@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".space.EditSpaceActivity">
+    tools:context=".space.training.exercises.EditExerciseActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:text="@string/edit_space"
+            android:text="@string/edit_exercise"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
+
         <LinearLayout
             android:id="@+id/appearance_configuration"
             android:layout_width="match_parent"
@@ -50,40 +51,11 @@
             android:orientation="vertical"
             android:padding="12dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/space_image"
-                    style="@style/profile_picture"
-                    android:layout_width="256dp"
-                    android:layout_height="256dp"
-                    android:src="@drawable/space"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_margin="16dp"
-                    android:background="@drawable/rounded_button"
-                    android:contentDescription="@string/description_edit"
-                    android:onClick="modifyImage"
-                    android:src="@drawable/ic_baseline_edit_24"
-                    app:layout_constraintLeft_toLeftOf="@id/space_image"
-                    app:layout_constraintTop_toTopOf="@id/space_image" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <TextView
                 style="@style/settings_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/edit_space_name" />
+                android:text="@string/edit_exercise_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_input_layout"
@@ -93,13 +65,90 @@
                 android:layout_marginTop="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/name_input"
+                    android:id="@+id/input_name"
                     style="@style/text_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/edit_space_name_hint"
+                    android:hint="@string/edit_exercise_name_hint"
                     android:inputType="text"
                     android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/settings_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/edit_exercise_category" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:flexWrap="wrap" />
+
+            <TextView
+                android:id="@+id/categories_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_exercise_category_error"
+                android:textColor="?attr/colorError"
+                android:visibility="gone" />
+
+            <TextView
+                style="@style/settings_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/edit_exercise_other" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_reps"
+                    style="@style/text_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_exercise_other_reps"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_weight"
+                    style="@style/text_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_exercise_other_weight"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_description"
+                    style="@style/text_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_exercise_other_description" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,32 +160,17 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button_leave"
-                    android:layout_width="144dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="end"
-                    android:background="@drawable/rounded_button_error"
-                    android:drawableStart="@drawable/ic_baseline_login_24"
-                    android:onClick="leaveSpace"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="@string/edit_space_leave"
-                    android:textColor="@color/white"
-                    android:visibility="gone" />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button_delete"
                     android:layout_width="144dp"
                     android:layout_height="40dp"
                     android:layout_gravity="end"
                     android:background="@drawable/rounded_button_error"
                     android:drawableStart="@drawable/ic_baseline_delete_24"
-                    android:onClick="deleteSpace"
+                    android:onClick="deleteExercise"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="@string/edit_space_delete"
-                    android:textColor="@color/white"
-                    android:visibility="gone" />
+                    android:text="@string/edit_exercise_delete"
+                    android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="144dp"
@@ -148,7 +182,7 @@
                     android:onClick="apply"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="@string/edit_space_confirm"
+                    android:text="@string/edit_exercise_confirm"
                     android:textColor="@color/white" />
 
             </LinearLayout>

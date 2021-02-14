@@ -80,7 +80,7 @@ class MainActivity : BaseActivity() {
     }
 
     /**
-     * Check if the settings changed something about the appearance
+     * Check if the main view has to be updated
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -91,7 +91,7 @@ class MainActivity : BaseActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-        } else if (requestCode == EDIT_SPACE && resultCode == EditSpaceActivity.SPACE_MODIFIED) {
+        } else if (requestCode == EDIT_SPACE && resultCode == EditSpaceActivity.SPACE_EDITED) {
             updateSpaces()
         } else if (requestCode == EDIT_SPACE && resultCode == EditSpaceActivity.SPACE_REMOVED) {
             updateSpaces()
@@ -144,7 +144,11 @@ class MainActivity : BaseActivity() {
             // Create the image button and add the space button pair
             allSpaces[i].loadImage()
             val imageButton = ImageButton(this)
-            imageButton.updateView(allSpaces[i].name, R.drawable.nav_button_highlighting, image = allSpaces[i].image)
+            imageButton.updateView(
+                allSpaces[i].name,
+                R.drawable.nav_button_highlighting,
+                image = allSpaces[i].image
+            )
             spaceView.addView(imageButton)
             spaces.add(Pair(allSpaces[i], imageButton))
 

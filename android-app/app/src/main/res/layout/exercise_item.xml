@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <View
         android:id="@+id/dark_background"
-        android:background="?attr/colorPrimaryVariant"
-        app:layout_constraintTop_toTopOf="@id/content"
-        app:layout_constraintBottom_toBottomOf="@id/content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimaryVariant"
+        app:layout_constraintBottom_toBottomOf="@id/content"
+        app:layout_constraintTop_toTopOf="@id/content" />
 
     <View
         android:id="@+id/bright_background"
-        android:background="?attr/colorOnPrimary"
-        app:layout_constraintTop_toTopOf="@id/content"
-        app:layout_constraintBottom_toBottomOf="@id/content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:background="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/content"
+        app:layout_constraintTop_toTopOf="@id/content" />
 
     <LinearLayout
         android:id="@+id/content"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+        android:orientation="vertical"
         android:paddingStart="12dp"
+        android:paddingTop="8dp"
         android:paddingEnd="12dp"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/name"
-            android:text="@string/placeholder"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder" />
 
         <LinearLayout
             android:id="@+id/tags"
-            android:layout_marginTop="-4dp"
-            android:layout_marginBottom="2dp"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:orientation="horizontal"/>
+            android:layout_marginTop="-4dp"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/button_edit"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="12dp"
+        android:contentDescription="@string/description_edit"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

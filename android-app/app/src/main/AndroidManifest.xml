@@ -19,10 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GetherFit">
         <activity
+            android:name=".space.training.exercises.EditExerciseActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".space.training.WorkoutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".space.training.ExerciseActivity"
+            android:name=".space.training.exercises.ExerciseActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"

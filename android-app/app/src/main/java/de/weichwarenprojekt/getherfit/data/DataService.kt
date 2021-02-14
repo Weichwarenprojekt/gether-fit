@@ -149,8 +149,8 @@ object DataService {
      * Add an exercise
      */
     private fun addExercise(name: String, categories: List<Category>) {
-        val exercise =  Exercise(name)
-        for (category in categories) exercise.categories.add(category)
+        val exercise = Exercise(name)
+        exercise.categories.addAll(categories)
         exerciseBox.put(exercise)
     }
 }

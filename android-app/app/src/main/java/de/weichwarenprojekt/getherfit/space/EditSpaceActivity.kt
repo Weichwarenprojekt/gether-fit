@@ -19,9 +19,9 @@ class EditSpaceActivity : BaseActivity() {
 
     companion object {
         /**
-         * The result if a space was modified/added
+         * The result if a space was edited/added
          */
-        const val SPACE_MODIFIED = 1
+        const val SPACE_EDITED = 1
 
         /**
          * The result if a space was deleted
@@ -84,8 +84,8 @@ class EditSpaceActivity : BaseActivity() {
         // Update the title
         val title = findViewById<TextView>(R.id.title)
         title.text = when (addSpace) {
-            true -> getString(R.string.edit_space)
-            else -> getString(R.string.edit_space_modify)
+            true -> getString(R.string.edit_space_add)
+            else -> getString(R.string.edit_space)
         }
         updateImage()
 
@@ -94,7 +94,7 @@ class EditSpaceActivity : BaseActivity() {
 
         // Update the leave/delete buttons
         if (addSpace) return
-        val leaveButton = findViewById<AppCompatButton>(R.id.leave_button)
+        val leaveButton = findViewById<AppCompatButton>(R.id.button_leave)
         leaveButton.visibility = View.VISIBLE
     }
 
@@ -127,6 +127,7 @@ class EditSpaceActivity : BaseActivity() {
         // Check if a name is given
         val newName: String = nameInput.text.toString()
         if (newName.isEmpty()) {
+            nameInputLayout.isErrorEnabled = true
             nameInputLayout.error = getString(R.string.edit_space_name_error)
             return
         }
@@ -140,7 +141,7 @@ class EditSpaceActivity : BaseActivity() {
         DataService.spaceBox.put(space)
 
         // Set the result and return
-        setResult(SPACE_MODIFIED)
+        setResult(SPACE_EDITED)
         onBackPressed()
     }
 
@@ -148,7 +149,10 @@ class EditSpaceActivity : BaseActivity() {
      * Leave the space
      */
     fun leaveSpace(v: View) {
-        ConfirmDialog(getString(R.string.edit_space_leave), getString(R.string.edit_space_leave_description)) {
+        ConfirmDialog(
+            getString(R.string.edit_space_leave),
+            getString(R.string.edit_space_leave_description)
+        ) {
             setResult(SPACE_REMOVED)
             space.removeImage()
             DataService.spaceBox.remove(space)
@@ -160,7 +164,10 @@ class EditSpaceActivity : BaseActivity() {
      * Delete the space
      */
     fun deleteSpace(v: View) {
-        ConfirmDialog(getString(R.string.edit_space_delete), getString(R.string.edit_space_delete_description)) {
+        ConfirmDialog(
+            getString(R.string.edit_space_delete),
+            getString(R.string.edit_space_delete_description)
+        ) {
             setResult(SPACE_REMOVED)
             space.removeImage()
             DataService.spaceBox.remove(space)
