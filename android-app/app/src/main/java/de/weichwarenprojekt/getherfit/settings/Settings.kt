@@ -16,9 +16,19 @@ object Settings {
     const val PREFERENCES = "Settings"
 
     /**
-     * True if the settings were already loaded
+     * The selected index if the home view was opened last
      */
-    private var loaded = false
+    const val HOME = -1
+
+    /**
+     * The index of the last opened space
+     */
+    var lastOpenedSpace = Value("last_opened_space", HOME)
+
+    /**
+     * The index of the last opened tab
+     */
+    var lastOpenedTab = Value("last_opened_tab", 0)
 
     /**
      * True if the KLVAD theme is active
@@ -36,10 +46,17 @@ object Settings {
     var personalOverview = Value("personal_overview", true)
 
     /**
+     * True if the settings were already loaded
+     */
+    private var loaded = false
+
+    /**
      * Load the settings
      */
     fun load(activity: Activity) {
         if (loaded) return
+        lastOpenedSpace.load(activity)
+        lastOpenedTab.load(activity)
         theme.load(activity)
         showBottomNav.load(activity)
         loaded = true
@@ -47,8 +64,17 @@ object Settings {
 
     /**
      * Value pair
+     *
+     * @param key The key of the preference
+     * @param value The default value
      */
-    class Value<T>(var key: String, var value: T) {
+    class Value<T>(private val key: String, value: T) {
+
+        /**
+         * The actual value
+         */
+        var value: T = value
+            private set
 
         /**
          * The gson loader
@@ -74,7 +100,7 @@ object Settings {
                 activity.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE).getString(key, "")
             if (savedValue != "") {
                 val type = object : TypeToken<T>() {}.type
-                value = gson.fromJson<T>(savedValue, type)
+                value = gson.fromJson(savedValue, type)
             }
         }
     }

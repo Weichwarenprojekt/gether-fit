@@ -11,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import de.weichwarenprojekt.getherfit.data.DataService
+import de.weichwarenprojekt.getherfit.settings.Settings
 import de.weichwarenprojekt.getherfit.settings.User
 import de.weichwarenprojekt.getherfit.shared.BaseActivity
 
@@ -76,8 +77,12 @@ class LoginActivity : BaseActivity() {
      * Show the main view
      */
     private fun showMain(account: GoogleSignInAccount) {
+        // Load data and preferences
         User.logIn(account)
+        Settings.load(this)
         DataService.init(this)
+
+        // Start the main activity
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

@@ -35,6 +35,15 @@ class HomeFragment : Fragment() {
         viewPager = view.findViewById(R.id.view_pager)
         val adapter = ScreenSlidePagerAdapter(this)
         viewPager.adapter = adapter
+
+        // Initialize the bottom navigation bar
+        bottomNav = view.findViewById(R.id.bottom_navigation)
+        bottomNav.visibility = when (Settings.showBottomNav.value) {
+            true -> View.VISIBLE
+            else -> View.GONE
+        }
+
+        // Listen for page swipes
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 when (position) {
@@ -47,25 +56,24 @@ class HomeFragment : Fragment() {
                 if (content != null) ScrollWatcher.reset(content.view!!.findViewById(R.id.scroll_view))
             }
         })
+        viewPager.setCurrentItem(Settings.lastOpenedTab.value, false)
 
-        // Initialize the bottom navigation bar
-        bottomNav = view.findViewById(R.id.bottom_navigation)
-        bottomNav.visibility = when (Settings.showBottomNav.value) {
-            true -> View.VISIBLE
-            else -> View.GONE
-        }
+        // Listen for navigation clicks
         bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.routines -> {
                     viewPager.setCurrentItem(1, true)
+                    Settings.lastOpenedTab.update(1, activity!!)
                     true
                 }
                 R.id.recipes -> {
                     viewPager.setCurrentItem(2, true)
+                    Settings.lastOpenedTab.update(2, activity!!)
                     true
                 }
                 else -> {
                     viewPager.setCurrentItem(0, true)
+                    Settings.lastOpenedTab.update(0, activity!!)
                     true
                 }
             }

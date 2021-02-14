@@ -1,7 +1,6 @@
 package de.weichwarenprojekt.getherfit.shared
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import de.weichwarenprojekt.getherfit.R
 import de.weichwarenprojekt.getherfit.settings.Settings
@@ -19,7 +18,6 @@ abstract class BaseActivity : AppCompatActivity() {
      * Initialize the activity
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        Settings.load(this)
         if (Settings.theme.value) setTheme(R.style.Theme_KLVAD)
         else setTheme(R.style.Theme_GetherFit)
         super.onCreate(savedInstanceState)
