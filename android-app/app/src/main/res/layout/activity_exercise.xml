@@ -50,12 +50,14 @@
 
         <ImageView
             android:id="@+id/search_button"
-            android:layout_width="32dp"
+            android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_margin="12dp"
             android:contentDescription="@string/description_search"
             android:onClick="openSearch"
             android:src="@drawable/ic_baseline_search_24"
+            android:scaleType="fitEnd"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/close_button"
             app:layout_constraintTop_toTopOf="parent" />
 

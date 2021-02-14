@@ -29,6 +29,8 @@ class ExerciseAdapter(val context: Context, var exercises: List<Exercise>) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.name)
         val tags: LinearLayout = view.findViewById(R.id.tags)
+        val darkBackground: View = view.findViewById(R.id.dark_background)
+        val brightBackground: View = view.findViewById(R.id.bright_background)
     }
 
     /**
@@ -44,6 +46,15 @@ class ExerciseAdapter(val context: Context, var exercises: List<Exercise>) :
      * Update the values of a view holder
      */
     override fun onBindViewHolder(view: ViewHolder, position: Int) {
+        // Update the background
+        if (position % 2 == 0) {
+            view.darkBackground.visibility = View.VISIBLE
+            view.brightBackground.visibility = View.GONE
+        } else {
+            view.darkBackground.visibility = View.GONE
+            view.brightBackground.visibility = View.VISIBLE
+        }
+
         // Update the name
         view.name.text = exercises[position].name
 
