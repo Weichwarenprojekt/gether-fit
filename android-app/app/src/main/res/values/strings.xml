@@ -20,6 +20,8 @@
     <string name="description_no_result">No Result</string>
     <string name="description_random">Random</string>
     <string name="description_new">New</string>
+    <string name="description_timer">Timer</string>
+    <string name="description_info">Info</string>
 
     <!-- The image bottom sheet -->
     <string name="bottom_image_title">Add Image</string>
@@ -98,6 +100,27 @@
     <string name="edit_exercise_other_reps">Reps</string>
     <string name="edit_exercise_other_weight">Weight</string>
     <string name="edit_exercise_other_description">Description</string>
+
+    <!-- The perform exercise screen -->
+    <string name="perform_exercise_time">Time</string>
+    <string name="perform_exercise_time_placeholder">0<small>s</small></string>
+    <string name="perform_exercise_total">Total</string>
+    <string name="perform_exercise_set">Set</string>
+    <string name="perform_exercise_pause">Pause</string>
+    <string name="perform_exercise_info">Information</string>
+    <string name="perform_exercise_next">Next</string>
+    <string name="perform_exercise_start">Start</string>
+    <string name="perform_exercise_finish">Finish</string>
+    <string name="perform_exercise_previous">Back</string>
+    <string name="perform_exercise_sets">Sets</string>
+    <string name="perform_exercise_reps">Reps</string>
+    <string name="perform_exercise_weight">Weight</string>
+    <string name="perform_exercise_description">Description</string>
+    <string name="perform_exercise_start_description"><b>Prepare!</b>\n\nClick on start if you want to enter the first set!</string>
+    <string name="perform_exercise_quit">Quit Exercise</string>
+    <string name="perform_exercise_quit_description">Are you sure you want to quit the exercise?</string>
+    <string name="perform_exercise_finish_title">Finish Exercise</string>
+    <string name="perform_exercise_finish_description">Are you sure you want to finish the exercise?</string>
 
     <!-- The workout activity -->
     <string name="workouts">Workouts</string>

@@ -101,25 +101,31 @@ class SettingsActivity : BaseActivity() {
      * Log out the user
      */
     fun logOut(v: View) {
+        v.isEnabled = false
         ConfirmDialog(getString(R.string.settings_logout), getString(R.string.settings_logout_description)) {
             User.logOut(this)
             setResult(LOGGED_OUT)
             finish()
         }.show(supportFragmentManager, "confirm_logout")
+        v.isEnabled = true
     }
 
     /**
      * Show the normal theme
      */
     fun showNormalTheme(v: View) {
+        v.isEnabled = false
         setTheme(false)
+        v.isEnabled = true
     }
 
     /**
      * Show the KLVAD theme
      */
     fun showKLVADTheme(v: View) {
+        v.isEnabled = false
         setTheme(true)
+        v.isEnabled = true
     }
 
     /**
@@ -141,6 +147,8 @@ class SettingsActivity : BaseActivity() {
      * Close the activity
      */
     fun close(v: View) {
+        v.isEnabled = false
         onBackPressed()
+        v.isEnabled = true
     }
 }

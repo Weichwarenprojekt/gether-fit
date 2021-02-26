@@ -19,6 +19,8 @@ class WorkoutActivity : BaseActivity() {
      * Close the activity
      */
     fun close(v: View) {
+        v.isEnabled = false
         onBackPressed()
+        v.isEnabled = true
     }
 }

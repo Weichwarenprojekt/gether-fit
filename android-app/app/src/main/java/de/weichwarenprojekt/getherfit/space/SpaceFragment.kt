@@ -15,7 +15,24 @@ import de.weichwarenprojekt.getherfit.shared.ScrollWatcher
 import de.weichwarenprojekt.getherfit.shared.overview.OverviewFragment
 import de.weichwarenprojekt.getherfit.space.training.TrainingFragment
 
-class SpaceFragment(var space: Space) : Fragment() {
+class SpaceFragment : Fragment() {
+
+    companion object {
+
+        /**
+         * The currently opened space
+         */
+        private lateinit var space: Space
+
+        /**
+         * Prepare the activity
+         *
+         * @param space The currently opened space
+         */
+        fun prepare(space: Space) {
+            SpaceFragment.space = space
+        }
+    }
 
     /**
      * The view pager
@@ -27,7 +44,7 @@ class SpaceFragment(var space: Space) : Fragment() {
      */
     private lateinit var bottomNav: BottomNavigationView
 
-    /***
+    /**
      * Initialize the view
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

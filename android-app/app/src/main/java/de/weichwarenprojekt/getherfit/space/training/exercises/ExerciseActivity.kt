@@ -12,10 +12,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputEditText
 import de.weichwarenprojekt.getherfit.R
-import de.weichwarenprojekt.getherfit.data.Category
-import de.weichwarenprojekt.getherfit.data.Category_
-import de.weichwarenprojekt.getherfit.data.DataService
-import de.weichwarenprojekt.getherfit.data.Exercise_
+import de.weichwarenprojekt.getherfit.data.*
 import de.weichwarenprojekt.getherfit.shared.BaseActivity
 import de.weichwarenprojekt.getherfit.shared.Utility
 import java.util.*
@@ -23,12 +20,25 @@ import kotlin.collections.ArrayList
 
 
 class ExerciseActivity : BaseActivity() {
-
-    /**
-     * The request codes
-     */
     companion object {
+        /**
+         * The request code for the editing activity
+         */
         const val EDIT_EXERCISE = 1
+
+        /**
+         * The action that shall be executed on item click
+         */
+        var itemAction: (exercise: Exercise) -> Unit = {}
+
+        /**
+         * Set an action that is executed on item select
+         *
+         * @param itemAction The action that shall be executed on item click
+         */
+        fun onItemSelected(itemAction: (exercise: Exercise) -> Unit) {
+            ExerciseActivity.itemAction = itemAction
+        }
     }
 
     /**
@@ -142,7 +152,8 @@ class ExerciseActivity : BaseActivity() {
         val list = findViewById<RecyclerView>(R.id.exercises)
         adapter = ExerciseAdapter(
             this,
-            DataService.exerciseBox.query().order(Exercise_.name).build().find()
+            DataService.exerciseBox.query().order(Exercise_.name).build().find(),
+            itemAction
         )
         list.adapter = adapter
     }
@@ -182,6 +193,7 @@ class ExerciseActivity : BaseActivity() {
      * Open the search bar
      */
     fun openSearch(v: View) {
+        v.isEnabled = false
         findViewById<View>(R.id.title).visibility = View.INVISIBLE
         findViewById<View>(R.id.search_button).visibility = View.GONE
         findViewById<View>(R.id.close_button).visibility = View.GONE
@@ -193,12 +205,14 @@ class ExerciseActivity : BaseActivity() {
                 getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
         }
+        v.isEnabled = true
     }
 
     /**
      * Close the search bar
      */
     fun closeSearch(v: View) {
+        v.isEnabled = false
         findViewById<View>(R.id.title).visibility = View.VISIBLE
         findViewById<View>(R.id.search_button).visibility = View.VISIBLE
         findViewById<View>(R.id.close_button).visibility = View.VISIBLE
@@ -210,34 +224,43 @@ class ExerciseActivity : BaseActivity() {
         imm.hideSoftInputFromWindow(editText.windowToken, 0)
         nameFilter = ""
         updateList()
+        v.isEnabled = true
     }
 
     /**
      * Sort the list alphabetic
      */
     fun sortAlphabetic(v: View) {
+        v.isEnabled = false
         updateSorting(Sort.ALPHABETIC)
+        v.isEnabled = true
     }
 
     /**
      * Sort the list with recent used exercises first
      */
     fun sortRecent(v: View) {
+        v.isEnabled = false
         updateSorting(Sort.RECENT)
+        v.isEnabled = true
     }
 
     /**
      * Sort the list with least used exercises first
      */
     fun sortLeastUsed(v: View) {
+        v.isEnabled = false
         updateSorting(Sort.LEAST_USED)
+        v.isEnabled = true
     }
 
     /**
      * Sort the list randomly
      */
     fun sortRandom(v: View) {
+        v.isEnabled = false
         updateSorting(Sort.RANDOM)
+        v.isEnabled = true
     }
 
     /**
@@ -270,16 +293,20 @@ class ExerciseActivity : BaseActivity() {
      * Add an exercise
      */
     fun addExercise(v: View) {
+        v.isEnabled = false
         EditExerciseActivity.prepare(true)
         val intent = Intent(this, EditExerciseActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         startActivityForResult(intent, EDIT_EXERCISE)
+        v.isEnabled = true
     }
 
     /**
      * Close the activity
      */
     fun close(v: View) {
+        v.isEnabled = false
         onBackPressed()
+        v.isEnabled = true
     }
 }

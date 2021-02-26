@@ -82,7 +82,7 @@
                 style="@style/settings_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/edit_space_name" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -90,7 +90,7 @@
                 style="@style/text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/name_input"

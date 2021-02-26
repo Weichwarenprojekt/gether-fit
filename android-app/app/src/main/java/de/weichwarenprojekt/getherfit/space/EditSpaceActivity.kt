@@ -124,11 +124,13 @@ class EditSpaceActivity : BaseActivity() {
      * Apply the creation/modification of the space
      */
     fun apply(v: View) {
+        v.isEnabled = false
         // Check if a name is given
         val newName: String = nameInput.text.toString()
         if (newName.isEmpty()) {
             nameInputLayout.isErrorEnabled = true
             nameInputLayout.error = getString(R.string.edit_space_name_error)
+            v.isEnabled = true
             return
         }
 
@@ -149,6 +151,7 @@ class EditSpaceActivity : BaseActivity() {
      * Leave the space
      */
     fun leaveSpace(v: View) {
+        v.isEnabled = false
         ConfirmDialog(
             getString(R.string.edit_space_leave),
             getString(R.string.edit_space_leave_description)
@@ -158,12 +161,14 @@ class EditSpaceActivity : BaseActivity() {
             DataService.spaceBox.remove(space)
             onBackPressed()
         }.show(supportFragmentManager, "confirm_leave")
+        v.isEnabled = true
     }
 
     /**
      * Delete the space
      */
     fun deleteSpace(v: View) {
+        v.isEnabled = false
         ConfirmDialog(
             getString(R.string.edit_space_delete),
             getString(R.string.edit_space_delete_description)
@@ -173,12 +178,15 @@ class EditSpaceActivity : BaseActivity() {
             DataService.spaceBox.remove(space)
             onBackPressed()
         }.show(supportFragmentManager, "confirm_delete")
+        v.isEnabled = true
     }
 
     /**
      * Close the activity
      */
     fun close(v: View) {
+        v.isEnabled = false
         onBackPressed()
+        v.isEnabled = true
     }
 }

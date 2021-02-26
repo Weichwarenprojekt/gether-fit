@@ -62,7 +62,8 @@
                 style="@style/text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_name"
@@ -79,11 +80,11 @@
                 style="@style/settings_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="@string/edit_exercise_category" />
 
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/categories"
+                android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:flexWrap="wrap" />
@@ -101,13 +102,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
                 android:text="@string/edit_exercise_other" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_reps"
@@ -115,7 +116,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/edit_exercise_other_reps"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -132,7 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/edit_exercise_other_weight"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>

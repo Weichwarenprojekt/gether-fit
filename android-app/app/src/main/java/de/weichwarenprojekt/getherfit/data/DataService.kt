@@ -25,6 +25,12 @@ object DataService {
         private set
 
     /**
+     * The performed exercise box
+     */
+    lateinit var performedExerciseBox: Box<PerformedExercise>
+        private set
+
+    /**
      * The categories box
      */
     lateinit var categoryBox: Box<Category>
@@ -37,6 +43,7 @@ object DataService {
         boxStore = MyObjectBox.builder().androidContext(activity.applicationContext).build()
         spaceBox = boxStore.boxFor()
         exerciseBox = boxStore.boxFor()
+        performedExerciseBox = boxStore.boxFor()
         categoryBox = boxStore.boxFor()
         initDefaults()
     }

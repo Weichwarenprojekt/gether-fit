@@ -20,8 +20,13 @@ import de.weichwarenprojekt.getherfit.data.Exercise
  *
  * @param activity The current application context
  * @param exercises The set of exercises
+ * @param itemAction The action that shall be executed on item click
  */
-class ExerciseAdapter(val activity: Activity, var exercises: List<Exercise>) :
+class ExerciseAdapter(
+    val activity: Activity,
+    var exercises: List<Exercise>,
+    var itemAction: (exercise: Exercise) -> Unit
+) :
     RecyclerView.Adapter<ExerciseAdapter.ViewHolder>() {
 
     /**
@@ -55,6 +60,11 @@ class ExerciseAdapter(val activity: Activity, var exercises: List<Exercise>) :
         } else {
             view.darkBackground.visibility = View.GONE
             view.brightBackground.visibility = View.VISIBLE
+        }
+
+        // Set the on click action
+        view.itemView.setOnClickListener {
+            itemAction(exercises[position])
         }
 
         // Update the name

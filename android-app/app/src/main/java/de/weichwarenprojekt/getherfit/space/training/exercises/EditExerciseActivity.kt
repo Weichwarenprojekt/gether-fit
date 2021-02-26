@@ -122,18 +122,22 @@ class EditExerciseActivity : BaseActivity() {
      * Add/Edit the exercise
      */
     fun apply(v: View) {
+        v.isEnabled = false
+
         // Check if a name is given
         val newName: String = findViewById<TextInputEditText>(R.id.input_name).text.toString()
         if (newName.isEmpty()) {
             val nameInputLayout: TextInputLayout = findViewById(R.id.name_input_layout)
             nameInputLayout.isErrorEnabled = true
             nameInputLayout.error = getString(R.string.edit_space_name_error)
+            v.isEnabled = true
             return
         }
 
         // Check if categories are selected
         if (selectedCategories.isEmpty()) {
             findViewById<View>(R.id.categories_error).visibility = View.VISIBLE
+            v.isEnabled = true
             return
         }
 
@@ -156,6 +160,7 @@ class EditExerciseActivity : BaseActivity() {
      * Delete the exercise
      */
     fun deleteExercise(v: View) {
+        v.isEnabled = false
         ConfirmDialog(
             getString(R.string.edit_exercise_delete),
             getString(R.string.edit_exercise_delete_description)
@@ -164,12 +169,15 @@ class EditExerciseActivity : BaseActivity() {
             DataService.exerciseBox.remove(exercise)
             onBackPressed()
         }.show(supportFragmentManager, "confirm_delete")
+        v.isEnabled = true
     }
 
     /**
      * Close the activity
      */
     fun close(v: View) {
+        v.isEnabled = false
         onBackPressed()
+        v.isEnabled = true
     }
 }

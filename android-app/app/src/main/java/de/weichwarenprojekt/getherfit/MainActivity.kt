@@ -185,7 +185,8 @@ class MainActivity : BaseActivity() {
         for (space in spaces) space.second.showHighlighting(false)
         spaces[position].second.showHighlighting(true)
         Settings.lastOpenedSpace.update(position, this)
-        showFragment(SpaceFragment(spaces[position].first))
+        SpaceFragment.prepare(spaces[position].first)
+        showFragment(SpaceFragment())
     }
 
     /**
@@ -204,37 +205,45 @@ class MainActivity : BaseActivity() {
      * Open the personal view
      */
     fun openHome(v: View) {
+        v.isEnabled = false
         Settings.lastOpenedTab.update(0, this)
         openHome()
+        v.isEnabled = true
     }
 
     /**
      * Add a space
      */
     fun addSpace(v: View) {
+        v.isEnabled = false
         EditSpaceActivity.prepare(true)
         val intent = Intent(this, EditSpaceActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         startActivityForResult(intent, EDIT_SPACE)
+        v.isEnabled = true
     }
 
     /**
      * Edit the currently opened space
      */
     fun editSpace(v: View) {
+        v.isEnabled = false
         EditSpaceActivity.prepare(false, spaces[Settings.lastOpenedSpace.value].first)
         val intent = Intent(this, EditSpaceActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         startActivityForResult(intent, EDIT_SPACE)
+        v.isEnabled = true
     }
 
     /**
      * Switch to the settings
      */
     fun openSettings(v: View) {
+        v.isEnabled = false
         val intent = Intent(this, SettingsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         startActivityForResult(intent, SETTINGS)
+        v.isEnabled = true
     }
 
     /**

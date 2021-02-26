@@ -42,6 +42,9 @@ class ConfirmDialog(var title: String, var description: String, var onConfirm: (
         return view
     }
 
+    /**
+     * Make background transparent
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import de.weichwarenprojekt.getherfit.R
 import de.weichwarenprojekt.getherfit.shared.ScrollWatcher
 import de.weichwarenprojekt.getherfit.space.training.exercises.ExerciseActivity
+import de.weichwarenprojekt.getherfit.space.training.exercises.PerformExerciseActivity
 
 class TrainingFragment : Fragment() {
 
@@ -26,6 +27,12 @@ class TrainingFragment : Fragment() {
 
         // Set up the click events for the buttons
         view.findViewById<View>(R.id.card_exercises).setOnClickListener {
+            ExerciseActivity.onItemSelected { exercise ->
+                PerformExerciseActivity.prepare(exercise, activity!!)
+                val intent = Intent(activity!!, PerformExerciseActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+                startActivity(intent)
+            }
             val intent = Intent(activity!!, ExerciseActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
             startActivity(intent)

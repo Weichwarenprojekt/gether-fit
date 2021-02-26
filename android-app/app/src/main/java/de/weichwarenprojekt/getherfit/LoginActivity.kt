@@ -2,7 +2,6 @@ package de.weichwarenprojekt.getherfit
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -10,8 +9,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
-import de.weichwarenprojekt.getherfit.data.DataService
-import de.weichwarenprojekt.getherfit.settings.Settings
 import de.weichwarenprojekt.getherfit.settings.User
 import de.weichwarenprojekt.getherfit.shared.BaseActivity
 
@@ -56,7 +53,7 @@ class LoginActivity : BaseActivity() {
         if (requestCode == SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
-                val account : GoogleSignInAccount? = task.getResult(ApiException::class.java)
+                val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
                 if (account != null) showMain(account)
             } catch (e: ApiException) {
                 Toast.makeText(this, R.string.login_failed, Toast.LENGTH_LONG).show()
@@ -70,7 +67,7 @@ class LoginActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
         val account: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(this)
-        if(account != null) showMain(account)
+        if (account != null) showMain(account)
     }
 
     /**
@@ -79,8 +76,6 @@ class LoginActivity : BaseActivity() {
     private fun showMain(account: GoogleSignInAccount) {
         // Load data and preferences
         User.logIn(account)
-        Settings.load(this)
-        DataService.init(this)
 
         // Start the main activity
         val intent = Intent(this, MainActivity::class.java)
