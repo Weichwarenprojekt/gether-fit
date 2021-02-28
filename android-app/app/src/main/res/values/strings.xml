@@ -21,6 +21,8 @@
     <string name="description_random">Random</string>
     <string name="description_new">New</string>
     <string name="description_timer">Timer</string>
+    <string name="description_reps">Reps</string>
+    <string name="description_weight">Weight</string>
     <string name="description_info">Info</string>
 
     <!-- The image bottom sheet -->
@@ -73,6 +75,9 @@
     <string name="training_workouts">Workouts</string>
     <string name="training_workouts_description">Start or modify workouts</string>
     <string name="training_history">History</string>
+    <string name="training_no_exercises">No exercises performed so far!\nQuit playing and start working out!</string>
+    <string name="training_single_exercises">Single Exercises</string>
+    <string name="training_show_more">Show More</string>
 
     <!-- The exercise activity -->
     <string name="exercises">Exercises</string>

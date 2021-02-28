@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_title"
+        style="@style/h4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:paddingStart="0dp"
+            android:paddingEnd="8dp"
+            android:text="@string/placeholder" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center|end"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/text_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="0dp"
+                android:paddingEnd="4dp"
+                android:text="@string/number"
+                android:textAlignment="textEnd"
+                tools:ignore="NestedWeights" />
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:contentDescription="@string/description_timer"
+                android:src="@drawable/ic_baseline_timer_24" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center|end"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/text_reps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="4dp"
+                android:text="@string/number"
+                android:textAlignment="textEnd"
+                tools:ignore="NestedWeights" />
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:contentDescription="@string/description_reps"
+                android:src="@drawable/ic_baseline_replay_24" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center|end"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/text_weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="4dp"
+                android:text="@string/number"
+                android:textAlignment="textEnd"
+                tools:ignore="NestedWeights" />
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:contentDescription="@string/description_weight"
+                android:src="@drawable/weight" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

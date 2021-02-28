@@ -1,18 +1,18 @@
 package de.weichwarenprojekt.getherfit.shared
 
-import android.widget.ScrollView
+import android.view.View
 
 object ScrollWatcher {
 
     /**
      * The on scroll event
      */
-    var onScroll : (scrollY: Int) -> Unit? = {_ -> }
+    var onScroll: (scrollY: Int) -> Unit? = { _ -> }
 
     /**
      * Register a new scrollbar
      */
-    fun setActiveScrollbar(scrollbar: ScrollView) {
+    fun setActiveScrollbar(scrollbar: View) {
         scrollbar.setOnScrollChangeListener { _, _, scrollY, _, _ ->
             onScroll(scrollY)
         }
@@ -21,7 +21,7 @@ object ScrollWatcher {
     /**
      * Reset the current scroll state
      */
-    fun reset(scrollbar: ScrollView) {
+    fun reset(scrollbar: View) {
         onScroll(scrollbar.scrollY)
     }
 }

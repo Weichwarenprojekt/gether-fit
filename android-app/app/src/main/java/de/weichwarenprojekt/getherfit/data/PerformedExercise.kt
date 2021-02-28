@@ -4,6 +4,8 @@ import de.weichwarenprojekt.getherfit.space.training.exercises.PerformState
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.relation.ToMany
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -13,6 +15,18 @@ import java.util.*
  */
 @Entity
 data class PerformedExercise(@Id var id: Long = 0) {
+
+    companion object {
+        /**
+         * The value for the workout if it was executed as single exercise
+         */
+        const val SINGLE_EXERCISE = ""
+
+        /**
+         * The data formatter
+         */
+        val DATE_FORMATTER: DateFormat = SimpleDateFormat.getDateInstance()
+    }
 
     /**
      * The name of the exercise
@@ -55,9 +69,19 @@ data class PerformedExercise(@Id var id: Long = 0) {
     var weight: String = ""
 
     /**
-     * The version (including timestamp)
+     * The workout the exercise belongs too
      */
-    val timestamp: Date = Date()
+    var workout: String = ""
+
+    /**
+     * The date
+     */
+    val date: String = DATE_FORMATTER.format(Date())
+
+    /**
+     * The timestamp
+     */
+    val timestamp: Long = System.currentTimeMillis()
 
     /**
      * Update the values with a given state report
@@ -66,9 +90,11 @@ data class PerformedExercise(@Id var id: Long = 0) {
      */
     fun update(state: PerformState) {
         // The exercise data
+        name = state.exercise!!.name
         reps = state.exercise!!.reps
-        weight = state.exercise!!.reps
+        weight = state.exercise!!.weight
         categories = state.exercise!!.categories
+        workout = state.workout
 
         // The performance data
         sets = (state.sets + 1) / 2

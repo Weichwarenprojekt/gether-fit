@@ -34,6 +34,7 @@ import kotlin.concurrent.schedule
  */
 data class PerformState(
     var exercise: Exercise?,
+    var workout: String,
     var sets: Int = 0,
     var totalTime: Int = 0,
     var finished: Boolean = false,
@@ -51,6 +52,11 @@ data class PerformState(
 class PerformExerciseActivity : BaseActivity() {
 
     companion object {
+        /**
+         * The result if an exercise was performed
+         */
+        const val EXERCISE_PERFORMED = 1
+
         /**
          * The actual id of the notification
          */
@@ -79,8 +85,8 @@ class PerformExerciseActivity : BaseActivity() {
          *
          * @param exercise The exercise to be performed
          */
-        fun prepare(exercise: Exercise, activity: Activity) {
-            Settings.performState.update(PerformState(exercise), activity)
+        fun prepare(exercise: Exercise, activity: Activity, workout: String = PerformedExercise.SINGLE_EXERCISE) {
+            Settings.performState.update(PerformState(exercise, workout), activity)
         }
     }
 
@@ -291,6 +297,7 @@ class PerformExerciseActivity : BaseActivity() {
 
                 // Clear the state and close the activity
                 state.finished = true
+                setResult(EXERCISE_PERFORMED)
                 super.onBackPressed()
             }
         }.show(supportFragmentManager, "finish_exercise")
