@@ -10,4 +10,7 @@
     <!-- The spacing between chips navigation -->
     <dimen name="chip_spacing">8dp</dimen>
 
+    <!-- The general corner radius -->
+    <dimen name="corner_radius">8dp</dimen>
+
 </resources>

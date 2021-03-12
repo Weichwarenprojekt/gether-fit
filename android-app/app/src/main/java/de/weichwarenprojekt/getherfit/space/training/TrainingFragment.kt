@@ -100,16 +100,6 @@ class TrainingFragment : Fragment() {
     }
 
     /**
-     * Check if an exercise or workout was performed
-     */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == EXERCISES && resultCode == PerformExerciseActivity.EXERCISE_PERFORMED) {
-            updateView()
-        }
-    }
-
-    /**
      * Query all distinct dates and sort them (latest first)
      */
     @Suppress("CanBeVal", "JavaCollectionsStaticMethodOnImmutableList")
@@ -122,5 +112,15 @@ class TrainingFragment : Fragment() {
         val dateFormatter = PerformedExercise.DATE_FORMATTER
         Collections.sort(dates) { s1, s2 -> dateFormatter.parse(s2)!!.compareTo(dateFormatter.parse(s1)) }
         return dates
+    }
+
+    /**
+     * Check if an exercise or workout was performed
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == EXERCISES && resultCode == PerformExerciseActivity.EXERCISE_PERFORMED) {
+            updateView()
+        }
     }
 }

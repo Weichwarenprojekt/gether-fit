@@ -23,6 +23,11 @@ object Settings {
     const val HOME = -1
 
     /**
+     * The period of the overview data
+     */
+    var period = Value("period", 0)
+
+    /**
      * The state of the last performed exercise
      */
     var performState = Value<PerformState?>("perform_state", null)
@@ -69,6 +74,7 @@ object Settings {
         theme.load(activity)
         showBottomNav.load(activity)
         performState.load(activity)
+        period.load(activity)
         loaded = true
 
         // Init the db

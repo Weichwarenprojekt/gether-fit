@@ -16,7 +16,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
 
         <!-- The corner radius -->
-        <item name="cornerRadius">8dp</item>
+        <item name="cornerRadius">@dimen/corner_radius</item>
 
         <!-- Disable automatic dark theme -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
@@ -42,7 +42,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
 
         <!-- The corner radius -->
-        <item name="cornerRadius">8dp</item>
+        <item name="cornerRadius">@dimen/corner_radius</item>
 
         <!-- Disable automatic dark theme -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
