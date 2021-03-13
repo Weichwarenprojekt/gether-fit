@@ -14,15 +14,15 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.RadarChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.renderer.BarChartRenderer
 import de.weichwarenprojekt.getherfit.R
+import de.weichwarenprojekt.getherfit.data.Category_
 import de.weichwarenprojekt.getherfit.data.DataService
 import de.weichwarenprojekt.getherfit.data.PerformedExercise_
 import de.weichwarenprojekt.getherfit.settings.Settings
@@ -81,6 +81,7 @@ class OverviewFragment : Fragment() {
     private fun updateView() {
         updateOverview()
         updateWorkoutChart()
+        updateMuscleGroupsChart()
     }
 
     /**
@@ -304,5 +305,106 @@ class OverviewFragment : Fragment() {
                 j += 4
             }
         }
+    }
+
+    /**
+     * Update the chart that displays the trained muscle groups
+     */
+    private fun updateMuscleGroupsChart() {
+        // Create the data set
+        val (values, labels, maxValue) = getMuscleGroups()
+        val dataSet = RadarDataSet(values, "muscle_groups")
+        val typedValue = TypedValue()
+        activity!!.theme.resolveAttribute(R.attr.colorSecondary, typedValue, true)
+        dataSet.color = typedValue.data
+        dataSet.fillColor = typedValue.data
+        dataSet.setDrawFilled(true)
+        dataSet.fillAlpha = 100
+        dataSet.lineWidth = 4f
+        dataSet.valueTextSize = 0f
+
+        // Set up the chart
+        val chart = view!!.findViewById<RadarChart>(R.id.chart_muscle_groups)
+        val data = RadarData()
+        data.addDataSet(dataSet)
+        chart.data = data
+        chart.xAxis.valueFormatter = object : ValueFormatter() {
+            override fun getAxisLabel(value: Float, axis: AxisBase): String {
+                return if (value < 0 || value > labels.size - 1) ""
+                else labels[value.toInt()]
+            }
+        }
+        val padding = resources.getDimension(R.dimen.radar_chart_padding)
+        chart.setExtraOffsets(padding, padding, padding, padding)
+        chart.xAxis.gridColor = activity!!.getColor(R.color.grey_5)
+        chart.yAxis.gridColor = activity!!.getColor(R.color.grey_5)
+        chart.xAxis.textColor = activity!!.getColor(R.color.white)
+        chart.yAxis.textColor = activity!!.getColor(R.color.white)
+        chart.yAxis.axisMinimum = 0f
+        chart.yAxis.axisMaximum = maxValue
+        chart.yAxis.isGranularityEnabled = true
+        chart.yAxis.granularity = 1f
+        chart.yAxis.valueFormatter = object : ValueFormatter() {
+            override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+                return if (value < 1) "" else value.toInt().toString()
+            }
+        }
+        chart.webColor = activity!!.getColor(R.color.grey_5)
+        chart.webColorInner = activity!!.getColor(R.color.grey_5)
+        chart.webLineWidth = 0f
+        chart.legend.isEnabled = false
+        chart.description.isEnabled = false
+        chart.setTouchEnabled(false)
+        chart.notifyDataSetChanged()
+        chart.invalidate()
+        chart.visibility = if (values.size > 2) View.VISIBLE else View.GONE
+        view!!.findViewById<View>(R.id.text_warning_muscles).visibility =
+            if (values.size > 2) View.GONE else View.VISIBLE
+    }
+
+    /**
+     * Get the trained muscle groups
+     */
+    private fun getMuscleGroups(): Triple<ArrayList<RadarEntry>, ArrayList<String>, Float> {
+        val values = ArrayList<RadarEntry>()
+        val labels = ArrayList(DataService.categoryBox.query().build().property(Category_.name).findStrings().toList())
+        var maxValue = 0f
+        val iterator = labels.iterator()
+
+        while (iterator.hasNext()) {
+            // Prepare the query to respect the period filter
+            val label = iterator.next()
+            val date = Calendar.getInstance()
+            val query = when (Settings.period.value) {
+                Periods.LAST_3_MONTHS.ordinal -> {
+                    date.add(Calendar.MONTH, -3)
+                    DataService.performedExerciseBox.query().greater(PerformedExercise_.timestamp, date.timeInMillis)
+                }
+                Periods.LAST_YEAR.ordinal -> {
+                    date.add(Calendar.YEAR, -1)
+                    DataService.performedExerciseBox.query().greater(PerformedExercise_.timestamp, date.timeInMillis)
+                }
+                else -> DataService.performedExerciseBox.query()
+            }
+
+            // Count the matching exercises
+            val count = query.filter { exercise ->
+                var includesCategory = false
+                for (category in exercise.categories) if (category.name == label) includesCategory = true
+                includesCategory
+            }.build().find().count()
+            maxValue = max(count.toFloat(), maxValue)
+
+            // Only add the muscle group if it was trained at least once
+            if (count <= 0) iterator.remove()
+            else values.add(RadarEntry(count.toFloat()))
+        }
+
+        // Check if enough values were collected
+        if (labels.size < 3) {
+            labels.clear()
+            values.clear()
+        }
+        return Triple(values, labels, maxValue)
     }
 }

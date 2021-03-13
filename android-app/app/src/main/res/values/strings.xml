@@ -67,6 +67,7 @@
     <string name="overview_sessions_per_month">Sessions Per Month</string>
     <string name="overview_all_sessions_all_months">All Sessions Per Month</string>
     <string name="overview_muscles">Trained Muscle Groups</string>
+    <string name="overview_muscles_warning">You need to train at least 3 different muscle groups for this chart to show up! </string>
     <string-array name="periods">
         <item> Last 3 Months </item>
         <item> Last Year </item>

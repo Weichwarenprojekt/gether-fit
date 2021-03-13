@@ -13,4 +13,7 @@
     <!-- The general corner radius -->
     <dimen name="corner_radius">8dp</dimen>
 
+    <!-- Radar chart padding -->
+    <dimen name="radar_chart_padding">16dp</dimen>
+
 </resources>

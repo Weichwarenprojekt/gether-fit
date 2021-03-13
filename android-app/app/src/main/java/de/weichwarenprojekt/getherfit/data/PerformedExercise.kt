@@ -93,7 +93,7 @@ data class PerformedExercise(@Id var id: Long = 0) {
         name = state.exercise!!.name
         reps = state.exercise!!.reps
         weight = state.exercise!!.weight
-        categories = state.exercise!!.categories
+        categories.addAll(state.exercise!!.categories)
         workout = state.workout
 
         // The performance data
