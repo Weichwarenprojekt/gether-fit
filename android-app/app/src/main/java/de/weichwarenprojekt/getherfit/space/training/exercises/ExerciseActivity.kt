@@ -190,6 +190,15 @@ class ExerciseActivity : BaseActivity() {
     }
 
     /**
+     * Select a random exercise
+     */
+    fun selectRandom(v: View) {
+        v.isEnabled = false
+        if (adapter.exercises.isNotEmpty()) itemAction(adapter.exercises[Random().nextInt(adapter.exercises.size)])
+        v.isEnabled = true
+    }
+
+    /**
      * Open the search bar
      */
     fun openSearch(v: View) {
