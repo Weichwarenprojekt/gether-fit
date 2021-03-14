@@ -6,20 +6,25 @@ import android.app.NotificationManager
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.format.DateUtils
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import de.weichwarenprojekt.getherfit.R
 import de.weichwarenprojekt.getherfit.data.DataService
 import de.weichwarenprojekt.getherfit.data.Exercise
 import de.weichwarenprojekt.getherfit.data.PerformedExercise
+import de.weichwarenprojekt.getherfit.data.PerformedExercise_
 import de.weichwarenprojekt.getherfit.settings.Settings
 import de.weichwarenprojekt.getherfit.shared.BaseActivity
 import de.weichwarenprojekt.getherfit.shared.components.ConfirmDialog
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.concurrent.schedule
 
@@ -41,6 +46,14 @@ data class PerformState(
     var finished: Boolean = false,
     var setTimes: HashMap<Int, Int> = HashMap()
 ) {
+    /**
+     * True if the exercise at start
+     */
+    val start: Boolean
+        get() {
+            return sets <= 0
+        }
+
     /**
      * True if the exercise is currently in pause
      */
@@ -217,27 +230,137 @@ class PerformExerciseActivity : BaseActivity() {
      * Update the activity view
      */
     private fun updateView() {
-        // Update the text
+        // Update the header
         findViewById<TextView>(R.id.exercise_title).text = getTitleText()
+        val logo = findViewById<ImageView>(R.id.logo)
+        logo.visibility = if (state.start) View.GONE else View.VISIBLE
+        logo.setImageResource(
+            if (state.start || state.pause) R.drawable.ic_baseline_pause_circle_24
+            else R.drawable.ic_baseline_play_circle_24
+        )
+        findViewById<View>(R.id.text_current_time).visibility = if (state.start) View.GONE else View.VISIBLE
 
-        // Check if the content or the information should be shown
-        val start: Boolean = state.sets <= 0
-        findViewById<View>(R.id.content).visibility = if (start) View.GONE else View.VISIBLE
-        findViewById<View>(R.id.text_information).visibility = if (start) View.VISIBLE else View.GONE
-        findViewById<View>(R.id.button_finish).visibility = if (start) View.GONE else View.VISIBLE
-
-        // Update the text
+        // Update the buttons
         findViewById<TextView>(R.id.text_button_next).text =
-            if (start) getString(R.string.perform_exercise_start) else getString(R.string.perform_exercise_next)
-        findViewById<TextView>(R.id.text_title_current_time).text =
-            if (state.pause) getString(R.string.perform_exercise_pause)
-            else getString(R.string.perform_exercise_set)
+            if (state.start) getString(R.string.perform_exercise_start) else getString(R.string.perform_exercise_next)
+        findViewById<View>(R.id.button_finish).visibility = if (state.start) View.GONE else View.VISIBLE
 
-        // Update the current timer text
-        if (!start) {
-            setText(currentTimeView, state.setTimes[state.sets]!!)
-            setText(totalTimeView, state.totalTime)
+        // Update the timer text
+        if (!state.start) setText(currentTimeView, state.setTimes[state.sets]!!)
+        setText(totalTimeView, state.totalTime)
+
+        // Get the matching performed exercises and update the time texts
+        val exercises = DataService.performedExerciseBox.query()
+            .equal(PerformedExercise_.name, state.exercise!!.name)
+            .order(PerformedExercise_.timestamp).build().find()
+        val (avgPause, avgSet) = calculateAvgTimes(exercises)
+        findViewById<TextView>(R.id.text_last_performed).text =
+            if (exercises.isEmpty()) "-"
+            else {
+                val flags = DateUtils.FORMAT_NO_YEAR or DateUtils.FORMAT_NUMERIC_DATE
+                DateUtils.formatDateTime(this, exercises.last().timestamp, flags)
+            }
+        setText(findViewById(R.id.text_avg_pause), avgPause)
+        setText(findViewById(R.id.text_avg_set), avgSet)
+
+        // Update the change log list
+        val changeLog = findViewById<RecyclerView>(R.id.change_log)
+        val logs = createLogs(exercises)
+        changeLog.adapter = ChangeLogAdapter(this, logs)
+    }
+
+    /**
+     * Calculate the avg pause and set times for the exercise
+     *
+     * @param exercises The performed exercises matching the current exercise
+     */
+    private fun calculateAvgTimes(exercises: List<PerformedExercise>): Pair<Int, Int> {
+        var avgPause = 0f
+        var avgSet = 0f
+        for (i in 0..5) {
+            if (i >= exercises.size - 1 || i == 4) {
+                avgSet /= i
+                avgPause /= i
+                break
+            }
+            avgPause += exercises[exercises.lastIndex - i].avgPause
+            avgSet += exercises[exercises.lastIndex - i].avgSet
         }
+        return Pair(avgPause.toInt(), avgSet.toInt())
+    }
+
+    /**
+     * Create the logs by analyzing the performed exercises
+     *
+     * @param exercises The performed exercises matching the current exercise
+     */
+    private fun createLogs(exercises: List<PerformedExercise>): ArrayList<ChangeLogAdapter.Log> {
+        val logs = ArrayList<ChangeLogAdapter.Log>()
+        var lastExercise = PerformedExercise()
+        for (exercise in exercises) {
+            if (exercise.weight != lastExercise.weight) {
+                logs.add(
+                    0,
+                    ChangeLogAdapter.Log(
+                        ChangeLogAdapter.LogType.WEIGHT,
+                        getString(R.string.perform_exercise_change_weight),
+                        getFormattedString(
+                            R.string.perform_exercise_change_weight_description,
+                            lastExercise.weight,
+                            exercise.weight
+                        ),
+                        exercise.date
+                    )
+                )
+            }
+            if (exercise.reps != lastExercise.reps) {
+                logs.add(
+                    0,
+                    ChangeLogAdapter.Log(
+                        ChangeLogAdapter.LogType.REPS,
+                        getString(R.string.perform_exercise_change_reps),
+                        getFormattedString(
+                            R.string.perform_exercise_change_reps_description,
+                            lastExercise.reps,
+                            exercise.reps
+                        ),
+                        exercise.date
+                    )
+                )
+            }
+            lastExercise = exercise
+        }
+        if (logs.isEmpty() && exercises.isEmpty()) logs.add(
+            ChangeLogAdapter.Log(
+                ChangeLogAdapter.LogType.START,
+                getString(R.string.perform_exercise_new),
+                getString(R.string.perform_exercise_new_description),
+                getString(R.string.overview_today)
+            )
+        ) else logs.add(
+            ChangeLogAdapter.Log(
+                ChangeLogAdapter.LogType.START,
+                getString(R.string.perform_exercise_new_old),
+                getFormattedString(
+                    R.string.perform_exercise_new_old_description,
+                    exercises[0].weight,
+                    exercises[0].reps
+                ),
+                exercises[0].date
+            )
+        )
+        return logs
+    }
+
+    /**
+     * @return A formatted string containing two variables
+     */
+    private fun getFormattedString(stringRsc: Int, value1: String, value2: String): String {
+        return getString(
+            stringRsc,
+            if (value1.isEmpty()) "0" else value1,
+            if (value2.isEmpty()) "0" else value2
+        )
     }
 
     /**
@@ -266,7 +389,7 @@ class PerformExerciseActivity : BaseActivity() {
         v.isEnabled = false
         timer?.cancel()
         synchronized(state) {
-            if (state.sets <= 0) state.totalTime = 0
+            if (state.start) state.totalTime = 0
             state.sets++
             state.setTimes[state.sets] = 0
             updateView()
@@ -311,7 +434,7 @@ class PerformExerciseActivity : BaseActivity() {
      */
     private fun getTitleText(): String {
         return when {
-            state.sets <= 0 -> state.exercise!!.name
+            state.start -> "Prepare • ${state.exercise!!.name}"
             state.pause -> "Pause • ${state.exercise!!.name}"
             else -> "${(state.sets + 1) / 2}. Set • ${state.exercise!!.name}"
         }

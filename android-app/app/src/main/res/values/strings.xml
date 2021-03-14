@@ -24,6 +24,7 @@
     <string name="description_reps">Reps</string>
     <string name="description_weight">Weight</string>
     <string name="description_info">Info</string>
+    <string name="description_circle">Circle</string>
 
     <!-- The image bottom sheet -->
     <string name="bottom_image_title">Add Image</string>
@@ -132,10 +133,13 @@
     <!-- The perform exercise screen -->
     <string name="perform_exercise_time">Time</string>
     <string name="perform_exercise_time_placeholder">0<small>s</small></string>
-    <string name="perform_exercise_total">Total</string>
-    <string name="perform_exercise_set">Set</string>
-    <string name="perform_exercise_pause">Pause</string>
+    <string name="perform_exercise_total">Total Time</string>
+    <string name="perform_exercise_last">Last Done</string>
+    <string name="perform_exercise_set">Avg. Set</string>
+    <string name="perform_exercise_pause">Avg. Pause</string>
     <string name="perform_exercise_info">Information</string>
+    <string name="perform_exercise_info_extended">Exercise Information</string>
+    <string name="perform_exercise_change_log">Change Log</string>
     <string name="perform_exercise_next">Next</string>
     <string name="perform_exercise_start">Start</string>
     <string name="perform_exercise_finish">Finish</string>
@@ -149,6 +153,14 @@
     <string name="perform_exercise_quit_description">Are you sure you want to quit the exercise?</string>
     <string name="perform_exercise_finish_title">Finish Exercise</string>
     <string name="perform_exercise_finish_description">Are you sure you want to finish the exercise?</string>
+    <string name="perform_exercise_new">Starting with the exercise</string>
+    <string name="perform_exercise_new_description">You never trained this exercise before</string>
+    <string name="perform_exercise_new_old">Started with the exercise</string>
+    <string name="perform_exercise_new_old_description">You started training this exercise with a weight of %1$s and %2$s reps</string>
+    <string name="perform_exercise_change_weight">Changed Weight</string>
+    <string name="perform_exercise_change_weight_description">You changed the weight from %1$s to %2$s</string>
+    <string name="perform_exercise_change_reps">Changed Reps</string>
+    <string name="perform_exercise_change_reps_description">You changed from %1$s to %2$s reps</string>
 
     <!-- The workout activity -->
     <string name="workouts">Workouts</string>
