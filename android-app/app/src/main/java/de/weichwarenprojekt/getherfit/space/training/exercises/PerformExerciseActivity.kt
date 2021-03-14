@@ -296,9 +296,9 @@ class PerformExerciseActivity : BaseActivity() {
      */
     private fun createLogs(exercises: List<PerformedExercise>): ArrayList<ChangeLogAdapter.Log> {
         val logs = ArrayList<ChangeLogAdapter.Log>()
-        var lastExercise = PerformedExercise()
+        var lastExercise: PerformedExercise? = null
         for (exercise in exercises) {
-            if (exercise.weight != lastExercise.weight) {
+            if (lastExercise != null && exercise.weight != lastExercise.weight) {
                 logs.add(
                     0,
                     ChangeLogAdapter.Log(
@@ -313,7 +313,7 @@ class PerformExerciseActivity : BaseActivity() {
                     )
                 )
             }
-            if (exercise.reps != lastExercise.reps) {
+            if (lastExercise != null && exercise.reps != lastExercise.reps) {
                 logs.add(
                     0,
                     ChangeLogAdapter.Log(
