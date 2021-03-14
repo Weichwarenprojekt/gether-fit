@@ -50,7 +50,7 @@ class SettingsActivity : BaseActivity() {
         // Set the user data
         updateImage()
         val credential = findViewById<DescriptionItem>(R.id.credentials)
-        credential.setText(User.firstName + " " + User.lastName, User.email)
+        credential.setText(GoogleUser.user.firstName + " " + GoogleUser.user.lastName, GoogleUser.user.email)
 
         // Set the highlighting for the active theme
         normalThemeButton.showHighlighting(!Settings.theme.value)
@@ -78,7 +78,7 @@ class SettingsActivity : BaseActivity() {
      */
     private fun updateImage() {
         val logo = findViewById<ImageView>(R.id.user_image)
-        if (User.image != null) logo.setImageBitmap(User.image)
+        if (GoogleUser.user.image != null) logo.setImageBitmap(GoogleUser.user.image)
         else logo.setImageResource(R.drawable.person)
     }
 
@@ -88,9 +88,9 @@ class SettingsActivity : BaseActivity() {
     fun modifyImage(v: View) {
         v.isEnabled = false
         ImageBottomSheet { result, image ->
-            if (result == ImageBottomSheet.ADD_IMAGE) User.image =
+            if (result == ImageBottomSheet.ADD_IMAGE) GoogleUser.user.image =
                 image
-            else if (result == ImageBottomSheet.DELETE_IMAGE) User.image =
+            else if (result == ImageBottomSheet.DELETE_IMAGE) GoogleUser.user.image =
                 null
             if (result != ImageBottomSheet.EMPTY) updateImage()
             v.isEnabled = true
@@ -103,7 +103,7 @@ class SettingsActivity : BaseActivity() {
     fun logOut(v: View) {
         v.isEnabled = false
         ConfirmDialog(getString(R.string.settings_logout), getString(R.string.settings_logout_description)) {
-            User.logOut(this)
+            GoogleUser.logOut(this)
             setResult(LOGGED_OUT)
             finish()
         }.show(supportFragmentManager, "confirm_logout")

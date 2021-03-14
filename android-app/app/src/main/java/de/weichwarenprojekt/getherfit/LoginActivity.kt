@@ -9,7 +9,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
-import de.weichwarenprojekt.getherfit.settings.User
+import de.weichwarenprojekt.getherfit.settings.GoogleUser
 import de.weichwarenprojekt.getherfit.shared.BaseActivity
 
 class LoginActivity : BaseActivity() {
@@ -41,7 +41,9 @@ class LoginActivity : BaseActivity() {
         }
 
         // Create the sign in client
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(GoogleUser.CLIENT_ID).requestEmail()
+            .build()
         signInClient = GoogleSignIn.getClient(this, gso)
     }
 
@@ -75,7 +77,7 @@ class LoginActivity : BaseActivity() {
      */
     private fun showMain(account: GoogleSignInAccount) {
         // Load data and preferences
-        User.logIn(account)
+        GoogleUser.logIn(this, account)
 
         // Start the main activity
         val intent = Intent(this, MainActivity::class.java)

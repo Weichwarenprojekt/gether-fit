@@ -4,7 +4,6 @@ import android.app.Activity
 import io.objectbox.Box
 import io.objectbox.BoxStore
 import io.objectbox.kotlin.boxFor
-import java.util.*
 
 object DataService {
 
@@ -39,8 +38,12 @@ object DataService {
 
     /**
      * Initialize the data service
+     *
+     * @param activity The current context
      */
     fun init(activity: Activity) {
+
+        // Initialize the database
         boxStore = MyObjectBox.builder().androidContext(activity.applicationContext).build()
         spaceBox = boxStore.boxFor()
         exerciseBox = boxStore.boxFor()
